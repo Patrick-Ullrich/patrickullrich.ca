@@ -9,7 +9,6 @@ import { CodeBlock } from '../../components/CodeBlock';
 import { Img } from '@chakra-ui/react';
 import { Divider } from '@chakra-ui/react';
 import { Link } from '@chakra-ui/react';
-import { MDXProvider } from '@mdx-js/react';
 import { Code } from '@chakra-ui/react';
 
 const components = {
@@ -19,11 +18,17 @@ const components = {
     </Text>
   ),
   hr: Divider,
-  img: (props) => (
-    <Center p="4">
-      <Img borderRadius={8} {...props} />
-    </Center>
-  ),
+  img: (props) => {
+    let [alt, desc] = props.alt.split('::');
+    return (
+      <Center as="figure" flexDir="column" p="4">
+        <Img borderRadius={8} {...props} alt={alt} />
+        <Text fontSize="sm" color="gray.500" mt="2">
+          {desc}
+        </Text>
+      </Center>
+    );
+  },
   inlineCode: Code,
   code: CodeBlock,
   ul: UnorderedList,
