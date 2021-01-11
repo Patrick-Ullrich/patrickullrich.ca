@@ -1,11 +1,12 @@
 import { Box } from '@chakra-ui/react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/cjs/styles/prism';
+import styled from '@emotion/styled';
 
 export const CodeBlock = ({ children, className }) => {
   const language = className.replace(/language-/, '');
   return (
-    <Box padding="4">
+    <Wrapper padding="4">
       <SyntaxHighlighter
         showLineNumbers={true}
         wrapLongLines={true}
@@ -14,6 +15,12 @@ export const CodeBlock = ({ children, className }) => {
       >
         {children}
       </SyntaxHighlighter>
-    </Box>
+    </Wrapper>
   );
 };
+
+const Wrapper = styled(Box)`
+  > pre {
+    border-radius: 8px;
+  }
+`;

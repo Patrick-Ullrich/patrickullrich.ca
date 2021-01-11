@@ -12,6 +12,13 @@ const theme = extendTheme({
         fontSize: 'lg',
       },
     },
+    List: {
+      baseStyle: {
+        item: {
+          fontSize: 'lg',
+        },
+      },
+    },
     Link: {
       baseStyle: {
         color: 'teal.300',
