@@ -4,12 +4,30 @@ import { getAllBlogs } from '../../lib/getAllBlogs';
 import { getBlogBySlug } from '../../lib/getBlogBySlug';
 import renderToString from 'next-mdx-remote/render-to-string';
 import hydrate from 'next-mdx-remote/hydrate';
-import { Center, ListItem, Text, UnorderedList } from '@chakra-ui/react';
+import {
+  Box,
+  Center,
+  Flex,
+  Heading,
+  ListItem,
+  OrderedList,
+  Stack,
+  Text,
+  UnorderedList,
+} from '@chakra-ui/react';
 import { CodeBlock } from '../../components/CodeBlock';
 import { Img } from '@chakra-ui/react';
 import { Divider } from '@chakra-ui/react';
 import { Link } from '@chakra-ui/react';
 import { Code } from '@chakra-ui/react';
+import styled from '@emotion/styled';
+
+const BlockQuote = styled(Box)`
+  > p {
+    padding: 0;
+    margin: 0;
+  }
+`;
 
 const components = {
   p: (props) => (
@@ -17,7 +35,17 @@ const components = {
       {props.children}
     </Text>
   ),
-  hr: Divider,
+  h2: (props) => (
+    <Heading {...props} size="lg">
+      {props.children}
+    </Heading>
+  ),
+  blockquote: ({ children }) => (
+    <BlockQuote borderLeft="4px solid" borderLeftColor="gray.500" ml={4} px={4}>
+      {children}
+    </BlockQuote>
+  ),
+  hr: (props) => <Divider my={6} />,
   img: (props) => {
     let [alt, desc] = props.alt.split('::');
     return (
@@ -32,9 +60,10 @@ const components = {
   inlineCode: Code,
   code: CodeBlock,
   ul: UnorderedList,
+  ol: OrderedList,
   li: ListItem,
   a: (props) => (
-    <Link {...props} color="teal.500" isExternal>
+    <Link {...props} isExternal>
       {props.children}
     </Link>
   ),
