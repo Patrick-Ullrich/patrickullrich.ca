@@ -1,5 +1,5 @@
 import React from 'react';
-import { BlogLayout } from '../../components/BlogLayout';
+import { BlogLayout } from '../../components/layouts/BlogLayout';
 import { getAllBlogs } from '../../lib/getAllBlogs';
 import { getBlogBySlug } from '../../lib/getBlogBySlug';
 import renderToString from 'next-mdx-remote/render-to-string';
