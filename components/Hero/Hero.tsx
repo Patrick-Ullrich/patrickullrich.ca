@@ -65,6 +65,7 @@ export default function Hero({ title, subtitle, about }: IProps) {
             fontWeight="700"
             textAlign={['center', 'center', 'left', 'left']}
             _after={{
+              // @ts-ignore
               md: {
                 content: '""',
                 display: 'block',
