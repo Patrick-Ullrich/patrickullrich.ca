@@ -1,11 +1,4 @@
-import {
-  Box,
-  Center,
-  Container,
-  Flex,
-  Text,
-  useColorModeValue,
-} from '@chakra-ui/react';
+import { Box, Container, Flex, Text } from '@chakra-ui/react';
 import { SectionHeader } from '../Section/SectionHeader';
 import { SectionInfoText } from '../Section/SectionInfoText';
 import { SectionLink } from '../Section/SectionLink';
@@ -13,7 +6,7 @@ import { SectionSubHeader } from '../Section/SectionSubHeader';
 
 export const LatestShop = () => {
   return (
-    <Box py={12}>
+    <Box py={{ base: 12, md: 20 }}>
       <Container maxW="1280px">
         <Flex
           spacing="auto"
@@ -28,15 +21,15 @@ export const LatestShop = () => {
               T-Shirts, and coffee mugs.
             </SectionSubHeader>
             <SectionInfoText>As long as Supply lasts</SectionInfoText>
-            <SectionLink to="shop">Check out all Merch</SectionLink>
+            <SectionLink>Check out all Merch</SectionLink>
           </Box>
           <Box
             width="100%"
             justifyContent="center"
             alignItems="center"
             maxWidth={{ base: '100%', md: '40%' }}
-            mb={{ base: 8, md: 0 }}
-            mt={{ base: 4, md: 0 }}
+            mb={{ base: 0, md: 0 }}
+            mt={{ base: 12, md: 0 }}
           >
             <Text w="100" textAlign="center">
               Coming soon.

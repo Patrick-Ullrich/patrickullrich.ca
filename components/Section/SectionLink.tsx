@@ -1,7 +1,7 @@
 import { Box, Button, Link, Text, useColorModeValue } from '@chakra-ui/react';
 import NextLink from 'next/link';
 
-export const SectionLink = ({ children, to }) => (
+export const SectionLink = ({ children, to = '#' }) => (
   <Box mt={8}>
     <NextLink href={to} passHref>
       <Button

@@ -4,6 +4,7 @@ import {
   Flex,
   Heading,
   Img,
+  Link,
   Stack,
   Text,
   useColorModeValue,
@@ -31,6 +32,7 @@ export default function Hero({ title, subtitle, about }: IProps) {
       }}
       direction={{ base: 'column-reverse', md: 'row' }}
       wrap="nowrap"
+      pt={{ base: 12, md: 20 }}
     >
       <Stack
         display="flex"
@@ -88,21 +90,29 @@ export default function Hero({ title, subtitle, about }: IProps) {
             position={'absolute'}
             top={'300px'}
           >
-            <Icon
-              color={useColorModeValue('brandBlack', 'brandWhite')}
-              fontSize="1.5rem"
-              as={GrInstagram}
-            />
-            <Icon
-              color={useColorModeValue('brandBlack', 'brandWhite')}
-              fontSize="1.5rem"
-              as={GrTwitter}
-            />
-            <Icon
-              color={useColorModeValue('brandBlack', 'brandWhite')}
-              fontSize="1.5rem"
-              as={GrLinkedinOption}
-            />
+            <Link isExternal href="https://www.instagram.com/itspatricku/">
+              <Icon
+                color={useColorModeValue('brandBlack', 'brandWhite')}
+                fontSize="1.5rem"
+                as={GrInstagram}
+              />
+            </Link>
+
+            <Link isExternal href="https://twitter.com/ItsPatrickU">
+              <Icon
+                color={useColorModeValue('brandBlack', 'brandWhite')}
+                fontSize="1.5rem"
+                as={GrTwitter}
+              />
+            </Link>
+
+            <Link isExternal href="https://www.linkedin.com/in/itspatricku/">
+              <Icon
+                color={useColorModeValue('brandBlack', 'brandWhite')}
+                fontSize="1.5rem"
+                as={GrLinkedinOption}
+              />
+            </Link>
           </Stack>
         </Box>
         <Box w={{ md: '40%' }}>

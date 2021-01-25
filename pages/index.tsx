@@ -8,6 +8,7 @@ import { LatestBlogs } from '../components/LatestBlogs/LatestBlogs';
 import { useEffect, useRef, useState } from 'react';
 import TextTransition, { presets } from 'react-text-transition';
 import { LatestShop } from '../components/LatestShop/LatestShop';
+import { ContactMe } from '../components/ContactMe/ContactMe';
 
 const WelcomeText = [
   'Hi',
@@ -72,6 +73,7 @@ export default function Home({ blogs }: IProps) {
         </Container>
         <LatestBlogs blogs={blogs} />
         <LatestShop />
+        <ContactMe />
       </LandingLayout>
     </Box>
   );
