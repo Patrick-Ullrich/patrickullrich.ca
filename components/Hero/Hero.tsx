@@ -1,60 +1,116 @@
 import {
   Box,
+  Container,
   Flex,
   Heading,
   Img,
   Stack,
+  Text,
   useColorModeValue,
 } from '@chakra-ui/react';
+import { Icon } from '@chakra-ui/react';
+import { GrTwitter, GrInstagram, GrLinkedinOption } from 'react-icons/gr';
+import { SectionHeader } from '../Section/SectionHeader';
+import { SectionInfoText } from '../Section/SectionInfoText';
+import { SectionLink } from '../Section/SectionLink';
+import { SectionSubHeader } from '../Section/SectionSubHeader';
 
 interface IProps {
-  title: string;
+  title: any;
   subtitle: string;
+  about: string;
 }
 
-export default function Hero({ title, subtitle }: IProps) {
-  const logo = useColorModeValue(
-    '/assets/images/itspatricku-logo-full colour navy.svg',
-    '/assets/images/itspatricku-logo-full colour cream.svg',
-  );
-
+export default function Hero({ title, subtitle, about }: IProps) {
   return (
     <Flex
-      align="center"
-      justify={{ base: 'center', md: 'space-around', xl: 'space-between' }}
+      justifyContent={{
+        base: 'flex-end',
+        md: 'space-around',
+        xl: 'space-between',
+      }}
       direction={{ base: 'column-reverse', md: 'row' }}
       wrap="nowrap"
-      minH="70vh"
-      px={{ base: '2', md: '8' }}
-      mb={16}
     >
       <Stack
-        spacing={4}
-        w={{ base: '80%', md: '40%' }}
-        align={['center', 'center', 'flex-start', 'flex-start']}
+        display="flex"
+        spacing={0}
+        align="center"
+        flexDirection={['column', 'column', 'row']}
       >
-        <Heading
-          as="h1"
-          size="xl"
-          fontWeight="700"
-          textAlign={['center', 'center', 'left', 'left']}
+        <Box
+          w={{ base: '100%', sm: '60%', md: '60%' }}
+          position="relative"
+          mb={{ base: 8, md: 0 }}
         >
-          {title}
-        </Heading>
-        <Heading
-          as="h2"
-          size="md"
-          fontWeight="normal"
-          lineHeight={1.5}
-          textAlign={['center', 'center', 'left', 'left']}
-        >
-          {subtitle}
-        </Heading>
+          <Flex
+            justifyContent={['center', 'center', 'flex-end']}
+            maxHeight={['150px', '150px', '400px']}
+            borderRadius="50%"
+            overflow={['hidden', 'hidden', 'visible']}
+          >
+            <Img
+              objectPosition="top"
+              src="/assets/images/profile-picture.png"
+              objectFit="cover"
+              height={['200px', '200px', '400px']}
+            />
+          </Flex>
+          <Heading
+            position={['relative', 'relative', 'absolute']}
+            as="h2"
+            mt={4}
+            top="0"
+            fontSize={['28px', '36px', '48px']}
+            fontWeight="700"
+            textAlign={['center', 'center', 'left', 'left']}
+            _after={{
+              md: {
+                content: '""',
+                display: 'block',
+                width: '3.75rem',
+                paddingTop: '0.75rem',
+                borderBottom: '0.5rem solid',
+                borderColor: useColorModeValue('teal.300', 'red.300'),
+              },
+            }}
+          >
+            {title}
+          </Heading>
+          <Stack
+            display={['none', 'none', 'flex']}
+            mt="0.5rem"
+            pt="0.5rem"
+            justifyContent={'start'}
+            direction="row"
+            spacing="8"
+            position={'absolute'}
+            top={'300px'}
+          >
+            <Icon
+              color={useColorModeValue('brandBlack', 'brandWhite')}
+              fontSize="1.5rem"
+              as={GrInstagram}
+            />
+            <Icon
+              color={useColorModeValue('brandBlack', 'brandWhite')}
+              fontSize="1.5rem"
+              as={GrTwitter}
+            />
+            <Icon
+              color={useColorModeValue('brandBlack', 'brandWhite')}
+              fontSize="1.5rem"
+              as={GrLinkedinOption}
+            />
+          </Stack>
+        </Box>
+        <Box w={{ md: '40%' }}>
+          <SectionHeader>Introduction</SectionHeader>
+          <SectionSubHeader>{subtitle}</SectionSubHeader>
+          <SectionInfoText>{about}</SectionInfoText>
+          <SectionLink to="about">More about me</SectionLink>
+        </Box>
       </Stack>
-
-      <Box w={{ base: '80%', sm: '60%', md: '50%' }} mb={{ base: 12, md: 0 }}>
-        <Img src={logo} size="100%" rounded="1rem" shadow="2xl" />
-      </Box>
     </Flex>
   );
 }

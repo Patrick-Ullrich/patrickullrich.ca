@@ -29,16 +29,11 @@ export default function Header(props) {
   );
 
   return (
-    <Box
-      boxShadow="base"
-      borderBottomRightRadius="md"
-      borderBottomLeftRadius="md"
-      mb="8"
-    >
-      <Container maxW="960px">
+    <Box mb="8">
+      <Container maxW="1280px">
         <Flex
           justifyContent="space-between"
-          alignItems="center'"
+          alignItems="center"
           wrap="wrap"
           as="nav"
         >
@@ -75,9 +70,12 @@ export default function Header(props) {
                 alignItems="center"
                 justify={['center', 'center', 'flex-end', 'flex-end']}
                 direction={['column', 'column', 'row', 'row']}
+                borderBottomWidth={['1px', '1px', 0]}
+                borderBottomColor="teal.300"
+                borderBottomStyle="solid"
               >
-                <MenuItem to="/blogs">Blog</MenuItem>
                 <MenuItem to="/about">About</MenuItem>
+                <MenuItem to="/blogs">Blog</MenuItem>
                 <MenuItem isLast to="/shop">
                   Shop
                 </MenuItem>

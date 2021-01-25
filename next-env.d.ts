@@ -9,6 +9,8 @@ interface BlogMeta {
   keywords: string[];
   description: string;
   id: string;
+  bannerUrl: string;
+  readTimeEstimate: string;
 }
 
 interface Blog {

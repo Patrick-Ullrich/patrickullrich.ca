@@ -1,4 +1,4 @@
-import { Link, Text } from '@chakra-ui/react';
+import { Link, Text, useColorModeValue } from '@chakra-ui/react';
 import NextLink from 'next/link';
 
 interface IProps {
@@ -16,12 +16,12 @@ export const MenuItem = ({
   return (
     <NextLink href={to} passHref>
       <Text
-        mb={{ base: isLast ? 0 : 8, md: 0 }}
-        mr={{ base: 0, md: isLast ? 0 : 8 }}
+        mb={{ base: isLast ? 4 : 8, md: 0 }}
+        mr={{ base: 0, md: isLast ? 2 : 8 }}
         display="block"
         {...rest}
       >
-        <Link to={to}>{children}</Link>
+        <Link color={useColorModeValue('red.300', 'teal.300')}>{children}</Link>
       </Text>
     </NextLink>
   );

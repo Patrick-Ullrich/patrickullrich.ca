@@ -13,11 +13,6 @@ export const BlogLayout = ({ children, meta }: IProps) => {
     <>
       <Head>
         <title>{meta.title}</title>
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap"
-          rel="stylesheet"
-        />
       </Head>
       <Container maxW="960px">
         <Heading>{meta.title}</Heading>

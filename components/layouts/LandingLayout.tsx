@@ -6,7 +6,7 @@ export default function LandingLayout(props) {
   return (
     <>
       <Header />
-      <Container maxW="960px">{props.children}</Container>
+      {props.children}
       <Footer />
     </>
   );

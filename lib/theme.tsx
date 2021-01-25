@@ -8,6 +8,12 @@ export const theme = extendTheme({
     mono: "'Poppins', sans-serif",
   },
   components: {
+    Badge: {
+      baseStyle: {
+        fontWeight: '700',
+        letterSpacing: '1px',
+      },
+    },
     Button: {
       baseStyle: {
         _focus: {
@@ -81,7 +87,7 @@ export const theme = extendTheme({
     },
   },
   config: {
-    initialColorMode: 'light',
+    initialColorMode: 'dark',
     useSystemColorMode: false,
   },
 });

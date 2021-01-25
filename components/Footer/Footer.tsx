@@ -8,7 +8,7 @@ export default function Footer(props) {
       borderBottomLeftRadius="md"
       mb="8"
     >
-      <Container maxW="960px" pt="4">
+      <Container maxW="1280px" pt="4">
         <Heading size="sm" fontWeight="700">
           Don't be shy, say hi.
         </Heading>
