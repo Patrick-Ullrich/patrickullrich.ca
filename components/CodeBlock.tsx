@@ -6,7 +6,7 @@ import styled from '@emotion/styled';
 export const CodeBlock = ({ children, className }) => {
   const language = className.replace(/language-/, '');
   return (
-    <Wrapper padding="4">
+    <Wrapper padding="4" mx={[0, '-20px', '-80px']}>
       <SyntaxHighlighter
         showLineNumbers={true}
         wrapLongLines={true}

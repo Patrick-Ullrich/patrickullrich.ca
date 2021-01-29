@@ -31,11 +31,17 @@ export const theme = extendTheme({
       baseStyle: {
         fontSize: 'lg',
       },
+      sizes: {
+        lg: {
+          fontSize: '20px',
+          lineHeight: '32px',
+        },
+      },
     },
     List: {
       baseStyle: {
         item: {
-          fontSize: 'lg',
+          fontSize: '20px',
         },
       },
     },

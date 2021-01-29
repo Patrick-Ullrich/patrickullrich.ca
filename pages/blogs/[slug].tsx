@@ -9,6 +9,7 @@ import {
   Center,
   Flex,
   Heading,
+  Icon,
   ListItem,
   OrderedList,
   Stack,
@@ -21,6 +22,25 @@ import { Divider } from '@chakra-ui/react';
 import { Link } from '@chakra-ui/react';
 import { Code } from '@chakra-ui/react';
 import styled from '@emotion/styled';
+import { LinkIcon } from '@chakra-ui/icons';
+
+/**
+ * The `BaseButton` component accepts any number of children. This flexibility
+ * is used to support easily adding icons as children. However, we only want
+ * to include strings when building accessible labels. Otherwise, it would say
+ * [object Object] in the label.
+ */
+const getLabelFromChildren = (children) => {
+  let label = '';
+
+  React.Children.map(children, (child) => {
+    if (typeof child === 'string') {
+      label += child;
+    }
+  });
+
+  return label;
+};
 
 const BlockQuote = styled(Box)`
   > p {
@@ -31,21 +51,35 @@ const BlockQuote = styled(Box)`
 
 const components = {
   p: (props) => (
-    <Text my="4" {...props}>
+    <Text my={8} size="lg" {...props}>
       {props.children}
     </Text>
   ),
-  h2: (props) => (
-    <Heading {...props} size="lg">
-      {props.children}
-    </Heading>
-  ),
+  h2: (props) => {
+    let titleLink = props.children.toLowerCase().replace(/\s/g, '-');
+    return (
+      <Link display="flex" alignItems="center" href={`#${titleLink}`}>
+        <LinkIcon ml={-8} />
+        <Heading pl={4} {...props} size="lg">
+          {props.children}
+        </Heading>
+      </Link>
+    );
+  },
   blockquote: ({ children }) => (
-    <BlockQuote borderLeft="4px solid" borderLeftColor="gray.500" ml={4} px={4}>
+    <BlockQuote
+      borderLeft="4px solid"
+      borderLeftColor="gray.500"
+      ml={4}
+      mt={12}
+      px={4}
+    >
       {children}
     </BlockQuote>
   ),
-  hr: (props) => <Divider my={6} />,
+  hr: (props) => (
+    <Divider borderBottomWidth={4} width="75%" ml="12.5%" my={12} />
+  ),
   img: (props) => {
     let [alt, desc] = props.alt.split('::');
     return (

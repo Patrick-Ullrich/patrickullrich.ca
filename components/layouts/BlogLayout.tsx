@@ -1,7 +1,8 @@
-import { Container, Heading } from '@chakra-ui/react';
+import { Container, Heading, Img } from '@chakra-ui/react';
 import React from 'react';
 import Head from 'next/head';
 import { Badge } from '@chakra-ui/react';
+import Header from '../Header/Header';
 
 interface IProps {
   children: JSX.Element;
@@ -14,8 +15,10 @@ export const BlogLayout = ({ children, meta }: IProps) => {
       <Head>
         <title>{meta.title}</title>
       </Head>
-      <Container maxW="960px">
-        <Heading>{meta.title}</Heading>
+      <Header />
+      <Container maxW="680px">
+        <Img borderRadius={8} my={8} src={meta.bannerUrl} />
+        <Heading fontWeight="700">{meta.title}</Heading>
         {meta.keywords.map((x, idx) => (
           <Badge key={idx} mr={2}>
             {x}

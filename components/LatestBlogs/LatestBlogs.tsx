@@ -1,13 +1,4 @@
-import {
-  Box,
-  Container,
-  Flex,
-  Heading,
-  Stack,
-  Text,
-  useColorMode,
-  useColorModeValue,
-} from '@chakra-ui/react';
+import { Box, Container, Flex, useColorModeValue } from '@chakra-ui/react';
 import { BlogCard } from '../BlogCard/BlogCard';
 import { SectionHeader } from '../Section/SectionHeader';
 import { SectionInfoText } from '../Section/SectionInfoText';
