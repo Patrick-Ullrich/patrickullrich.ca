@@ -1,24 +1,17 @@
 import {
   Box,
-  Button,
   Container,
   Divider,
-  Flex,
-  FormControl,
-  FormHelperText,
-  FormLabel,
-  Heading,
   HStack,
   Icon,
   Img,
-  Input,
   Link,
   Stack,
   Text,
-  useColorMode,
   useColorModeValue,
 } from '@chakra-ui/react';
 import { GrInstagram, GrLinkedinOption, GrTwitter } from 'react-icons/gr';
+import { Subscription } from '../Subscription/Subscription';
 
 export default function Footer(props) {
   const logo = useColorModeValue(
@@ -35,22 +28,7 @@ export default function Footer(props) {
           justifyContent="space-between"
           alignItems={['center', 'flex-end']}
         >
-          <Flex alignItems="flex-end">
-            <FormControl maxW="270px" id="email">
-              <FormLabel>Subscribe to my Newsletter</FormLabel>
-              <Input maxW="250px" type="email" placeholder="Email" />
-            </FormControl>
-            <Button
-              mt={4}
-              ml={4}
-              bgColor={useColorModeValue('red.300', 'teal.300')}
-              colorScheme={useColorModeValue('red', 'teal')}
-              isLoading={props.isSubmitting}
-              type="submit"
-            >
-              Submit
-            </Button>
-          </Flex>
+          <Subscription />
           <Stack pb={2} justifyContent={'start'} direction="row" spacing="8">
             <Link isExternal href="https://www.instagram.com/itspatricku/">
               <Icon

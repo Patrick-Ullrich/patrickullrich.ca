@@ -35,7 +35,11 @@ export const LatestBlogs = ({ blogs }: IProps) => {
           </Box>
           <Box maxWidth={{ base: '100%', md: '40%' }} mt={{ base: 4, md: 0 }}>
             {blogsToDisplay.map((x, index) => (
-              <BlogCard isLast={index + 1 == blogsToDisplay.length} blog={x} />
+              <BlogCard
+                key={x.id}
+                isLast={index + 1 == blogsToDisplay.length}
+                blog={x}
+              />
             ))}
           </Box>
         </Flex>
