@@ -32,7 +32,7 @@ export default function Hero({ title, subtitle, about }: IProps) {
       }}
       direction={{ base: 'column-reverse', md: 'row' }}
       wrap="nowrap"
-      pt={{ base: 12, md: 20 }}
+      pt={{ base: 0, md: 20 }}
     >
       <Stack
         display="flex"

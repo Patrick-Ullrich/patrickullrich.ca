@@ -1,6 +1,7 @@
 import {
   Badge,
   Box,
+  Flex,
   Heading,
   Link,
   Text,
@@ -16,7 +17,8 @@ interface IProps {
 export const BlogCard = ({ blog, isLast }: IProps) => (
   <NextLink href={`/blogs/${blog.slug}`} passHref>
     <Link textDecoration="none" _hover={{ textDecoration: 'none' }}>
-      <Box
+      <Flex
+        height="100%"
         transition="transform .4s"
         _hover={{ transform: 'scale(1.05)' }}
         borderRadius="lg"
@@ -24,6 +26,7 @@ export const BlogCard = ({ blog, isLast }: IProps) => (
         borderColor={useColorModeValue('gray.500', 'gray.500')}
         overflow="hidden"
         mb={isLast ? 0 : 4}
+        flexDirection="column"
       >
         <Box
           mx="4"
@@ -36,18 +39,26 @@ export const BlogCard = ({ blog, isLast }: IProps) => (
           backgroundSize="cover"
         />
 
-        <Box px="4" py="2">
-          <Heading size="sm" fontWeight="500" letterSpacing="wide">
-            {blog.title}
-          </Heading>
-          <Text
-            my={2}
-            noOfLines={2}
-            fontSize="sm"
-            color={useColorModeValue('gray.600', 'gray.400')}
-          >
-            {blog.description}
-          </Text>
+        <Flex
+          px="4"
+          py="2"
+          flexGrow={1}
+          justifyContent="space-between"
+          flexDirection="column"
+        >
+          <Box>
+            <Heading size="sm" fontWeight="500" letterSpacing="wide">
+              {blog.title}
+            </Heading>
+            <Text
+              my={2}
+              noOfLines={2}
+              fontSize="sm"
+              color={useColorModeValue('gray.600', 'gray.400')}
+            >
+              {blog.description}
+            </Text>
+          </Box>
           <Box d="flex" justifyContent="space-between" alignItems="baseline">
             {blog.keywords.slice(0, 1).map((x, idx) => (
               <Badge colorScheme="teal" key={idx} mr={2}>
@@ -67,8 +78,8 @@ export const BlogCard = ({ blog, isLast }: IProps) => (
               </Box>
             )}
           </Box>
-        </Box>
-      </Box>
+        </Flex>
+      </Flex>
     </Link>
   </NextLink>
 );

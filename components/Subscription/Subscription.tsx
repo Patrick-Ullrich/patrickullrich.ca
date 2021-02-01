@@ -90,6 +90,9 @@ export const Subscription = () => {
 
   return (
     <Flex
+      p={4}
+      borderRadius={8}
+      bg={useColorModeValue('gray.50', 'gray.700')}
       width={['100%', 'auto']}
       alignItems="flex-end"
       flexDirection={['column', 'column', 'row']}

@@ -75,10 +75,10 @@ export default function Header(props) {
                 borderBottomStyle="solid"
               >
                 <MenuItem to="/about">About</MenuItem>
-                <MenuItem to="/blogs">Blog</MenuItem>
-                <MenuItem isLast to="/shop">
-                  Shop
+                <MenuItem isLast to="/blogs">
+                  Blog
                 </MenuItem>
+
                 <Button
                   background="none"
                   _active={{ background: 'none' }}
