@@ -1,46 +1,26 @@
-import React from 'react';
-import { BlogLayout } from '../../components/layouts/BlogLayout';
-import { getAllBlogs } from '../../lib/getAllBlogs';
-import { getBlogBySlug } from '../../lib/getBlogBySlug';
-import renderToString from 'next-mdx-remote/render-to-string';
-import hydrate from 'next-mdx-remote/hydrate';
+import { LinkIcon } from '@chakra-ui/icons';
 import {
   Box,
   Center,
-  Flex,
+  Code,
+  Divider,
   Heading,
-  Icon,
+  Img,
+  Link,
   ListItem,
   OrderedList,
-  Stack,
   Text,
   UnorderedList,
 } from '@chakra-ui/react';
-import { CodeBlock } from '../../components/CodeBlock';
-import { Img } from '@chakra-ui/react';
-import { Divider } from '@chakra-ui/react';
-import { Link } from '@chakra-ui/react';
-import { Code } from '@chakra-ui/react';
 import styled from '@emotion/styled';
-import { LinkIcon } from '@chakra-ui/icons';
-
-/**
- * The `BaseButton` component accepts any number of children. This flexibility
- * is used to support easily adding icons as children. However, we only want
- * to include strings when building accessible labels. Otherwise, it would say
- * [object Object] in the label.
- */
-const getLabelFromChildren = (children) => {
-  let label = '';
-
-  React.Children.map(children, (child) => {
-    if (typeof child === 'string') {
-      label += child;
-    }
-  });
-
-  return label;
-};
+import hydrate from 'next-mdx-remote/hydrate';
+import renderToString from 'next-mdx-remote/render-to-string';
+import React from 'react';
+import readTimeEstimate from 'read-time-estimate';
+import { CodeBlock } from '../../components/CodeBlock';
+import { BlogLayout } from '../../components/layouts/BlogLayout';
+import { getAllBlogs } from '../../lib/getAllBlogs';
+import { getBlogBySlug } from '../../lib/getBlogBySlug';
 
 const BlockQuote = styled(Box)`
   > p {
@@ -58,11 +38,20 @@ const components = {
   h2: (props) => {
     let titleLink = props.children.toLowerCase().replace(/\s/g, '-');
     return (
-      <Link display="flex" alignItems="center" href={`#${titleLink}`}>
-        <LinkIcon ml={-8} />
-        <Heading pl={4} {...props} size="lg">
+      <Link
+        sx={{
+          ':hover > svg': {
+            visibility: 'visible',
+          },
+        }}
+        display="flex"
+        alignItems="center"
+        href={`#${titleLink}`}
+      >
+        <Heading {...props} size="lg" mt={4}>
           {props.children}
         </Heading>
+        <LinkIcon ml={4} visibility="hidden" />
       </Link>
     );
   },
@@ -119,11 +108,15 @@ function BlogPostPage({ blog }: IProps) {
 
 export async function getStaticProps(context) {
   const { data, content } = await getBlogBySlug(context.params.slug);
+  const estimate = readTimeEstimate(content, 275, 12, 500, ['img', 'Image']);
 
   return {
     props: {
       blog: {
-        meta: { ...data } as BlogMeta,
+        meta: {
+          ...data,
+          readTimeEstimate: estimate.humanizedDuration,
+        } as BlogMeta,
         content: await renderToString(content, {
           components,
           scope: data,

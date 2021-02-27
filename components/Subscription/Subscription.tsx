@@ -118,7 +118,7 @@ export const Subscription = () => {
         mt={4}
         ml={4}
         mb={[0, 0, '29px']}
-        w={['100%', '100%', '180px']}
+        w={['180px']}
         bgColor={useColorModeValue('red.300', 'teal.300')}
         colorScheme={useColorModeValue('red', 'teal')}
         type="submit"

@@ -46,7 +46,7 @@ export default function Blogs({ blogs }: IProps) {
         </Center>
         <Grid columnGap={4} rowGap={4} gridTemplateColumns="repeat(3, 1fr)">
           {filteredBlogs.map((blog, index) => (
-            <GridItem>
+            <GridItem index={blog.id}>
               <BlogCard
                 blog={blog}
                 isLast={index === filteredBlogs.length - 1}
@@ -60,7 +60,7 @@ export default function Blogs({ blogs }: IProps) {
 }
 
 export async function getStaticProps() {
-  const blogs = await getAllBlogs();
+  const blogs = (await getAllBlogs()).filter((x) => !x.draft);
   return {
     props: { blogs },
   };

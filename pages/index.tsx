@@ -76,7 +76,7 @@ export default function Home({ blogs }: IProps) {
 }
 
 export async function getStaticProps() {
-  const blogs = await getAllBlogs();
+  const blogs = (await getAllBlogs()).filter((x) => !x.draft);
   return {
     props: { blogs },
   };

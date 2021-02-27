@@ -12,6 +12,7 @@ keywords:
 
 bannerUrl: '/assets/many-to-many-in-ef-net-5/banner.png'
 description: 'A new Many-2-Many syntax has been show cased during the .NET Conf 2020. We will take a look at see how it simplifies the setup.'
+discuss: 'https://twitter.com'
 ---
 
 .NET Conf 2020 was happening this week. We were shown tips and tricks using csharp 9, Blazor, and all the performance improvements we are getting with .NET 5.
@@ -79,7 +80,7 @@ This allows us to query the Junction Table like so:
 context.Subscribers.Where(sub => sub.Subscriptions.Any(x => x.MonthsSubscribed > 3)).ToList();
 ```
 
-The first time I heard about this change was from @shayrojansky during the .NET Conf 2020.
+The first time I heard about this change was from [@shayrojansky](https://twitter.com/shayrojansky) during the .NET Conf 2020.
 You can find the recording here: [https://www.youtube.com/watch?v=BIImyq8qaD4](https://www.youtube.com/watch?v=BIImyq8qaD4)
 
 If you want to read further about it I highly suggest checking out the [official Microsoft Docs](https://docs.microsoft.com/en-us/ef/core/modeling/relationships?tabs=fluent-api%2Cfluent-api-simple-key%2Csimple-key#many-to-many) as well.

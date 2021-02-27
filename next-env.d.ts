@@ -3,7 +3,7 @@
 
 interface BlogMeta {
   title: string;
-  date: Date;
+  date: string;
   slug: string;
   author: string;
   keywords: string[];
@@ -11,6 +11,8 @@ interface BlogMeta {
   id: string;
   bannerUrl: string;
   readTimeEstimate: string;
+  discuss: string;
+  draft?: boolean;
 }
 
 interface Blog {

@@ -34,7 +34,7 @@ export const theme = extendTheme({
       sizes: {
         lg: {
           fontSize: '20px',
-          lineHeight: '32px',
+          lineHeight: '34px',
         },
       },
     },
