@@ -101,7 +101,7 @@ export default function Footer(props) {
         </Stack>
         <Divider mt={12} mb={8} />
         <HStack justifyContent="center" spacing={4}>
-          <Img src={logo} htmlWidth="75" />
+          <Img alt="Patrick U Logo" src={logo} htmlWidth="75" />
           <Text>© {new Date().getFullYear()} Patrick Ullrich</Text>
         </HStack>
       </Container>

@@ -34,7 +34,7 @@ export const BlogLayout = ({ children, meta }: IProps) => {
       </Head>
       <Header />
       <Container maxW="680px" mb={8}>
-        <Img borderRadius={8} my={8} src={meta.bannerUrl} />
+        <Img alt={meta.title} borderRadius={8} my={8} src={meta.bannerUrl} />
         <Heading fontWeight="700">{meta.title}</Heading>
         <Box
           color="gray.500"

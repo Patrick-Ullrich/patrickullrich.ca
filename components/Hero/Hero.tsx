@@ -52,8 +52,9 @@ export default function Hero({ title, subtitle, about }: IProps) {
             overflow={['hidden', 'hidden', 'visible']}
           >
             <Img
+              alt="Picture of Patrick U."
               objectPosition="top"
-              src="/assets/images/profile-picture.png"
+              src="/assets/images/profile-picture.webp"
               objectFit="cover"
               height={['200px', '200px', '400px']}
             />

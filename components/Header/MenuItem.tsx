@@ -21,7 +21,9 @@ export const MenuItem = ({
         display="block"
         {...rest}
       >
-        <Link color={useColorModeValue('red.300', 'teal.300')}>{children}</Link>
+        <Link color={useColorModeValue('red.300', 'teal.300')} href={to}>
+          {children}
+        </Link>
       </Text>
     </NextLink>
   );

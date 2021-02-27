@@ -39,7 +39,7 @@ export default function Header(props) {
         >
           <NextLink href="/" passHref>
             <Link>
-              <Img src={logo} htmlWidth="250" />
+              <Img alt="Patrick U Logo" src={logo} htmlWidth="250" />
             </Link>
           </NextLink>
 
@@ -80,6 +80,7 @@ export default function Header(props) {
                 </MenuItem>
 
                 <Button
+                  aria-label="light and dark mode"
                   background="none"
                   _active={{ background: 'none' }}
                   _hover={{ background: 'none' }}

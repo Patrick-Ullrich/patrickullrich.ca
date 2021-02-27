@@ -1,7 +1,7 @@
-import { Text } from '@chakra-ui/react';
+import { Text, useColorModeValue } from '@chakra-ui/react';
 
 export const SectionInfoText = ({ children }) => (
-  <Text mt={4} fontSize="sm" color="gray.500">
+  <Text mt={4} fontSize="sm" color={useColorModeValue('gray.500', 'gray.400')}>
     {children}
   </Text>
 );

@@ -45,6 +45,10 @@ export default function Home({ blogs }: IProps) {
     <>
       <Head>
         <title>It's Patrick U</title>
+        <meta
+          name="description"
+          content="It's Patrick U. Personal Homepage and Blog."
+        />
       </Head>
       <Box>
         <MainLayout>
