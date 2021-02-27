@@ -4,7 +4,7 @@ import { ElementType } from 'react';
 interface IProps {
   href: string;
   icon: ElementType;
-  children: JSX.Element;
+  children: any;
 }
 
 export const ShareButton = ({ href, icon, children }: IProps) => (
