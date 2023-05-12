@@ -1,50 +1,259 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
 ---
 
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Header title={SITE_TITLE} />
-		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
-				template serves as a lightweight, minimally-styled starting point for anyone looking to build
-				a personal website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/pages/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to <a href="https://docs.astro.build/"
-					>read the docs
-				</a> or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out <a
-					href="https://github.com/Charca/astro-blog-template"
-					>astro-blog-template
-				</a> by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
-		</main>
-		<Footer />
-	</body>
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  </head>
+  <body>
+    <div class="mx-auto relative">
+      <main class="mx-4 text-gray-900">
+        <div class="sm:px-8 mb-16">
+          <div class="mx-auto max-w-7xl lg:px-8">
+            <div class="relative px-4 sm:px-8 lg:px-12">
+              <div class="mb-20">
+                <Header title={SITE_TITLE} />
+              </div>
+              <div>
+                <svg
+                  class="absolute inset-x-0 top-0 -z-10 h-[64rem] w-full stroke-gray-200 [mask-image:radial-gradient(32rem_32rem_at_center,white,transparent)]"
+                  aria-hidden="true"
+                >
+                  <defs>
+                    <pattern
+                      id="1f932ae7-37de-4c0a-a8b0-a6e3b4d44b84"
+                      width="200"
+                      height="200"
+                      x="50%"
+                      y="-1"
+                      patternUnits="userSpaceOnUse"
+                    >
+                      <path d="M.5 200V.5H200" fill="none"></path>
+                    </pattern>
+                  </defs>
+                  <svg x="50%" y="-1" class="overflow-visible fill-gray-50">
+                    <path
+                      d="M-200 0h201v201h-201Z M600 0h201v201h-201Z M-400 600h201v201h-201Z M200 800h201v201h-201Z"
+                      stroke-width="0"></path>
+                  </svg>
+                  <rect
+                    width="100%"
+                    height="100%"
+                    stroke-width="0"
+                    fill="url(#1f932ae7-37de-4c0a-a8b0-a6e3b4d44b84)"></rect>
+                </svg>
+                <div
+                  class="grid grid-cols-1 gap-y-16 lg:grid-cols-2 lg:grid-rows-[auto_1fr] lg:gap-y-12"
+                >
+                  <div class="lg:pl-20 flex items-center justify-center">
+                    <div class="max-w-xs px-2.5 lg:max-w-md">
+                      <img
+                        alt=""
+                        loading="lazy"
+                        width="800"
+                        height="800"
+                        decoding="async"
+                        data-nimg="1"
+                        class="aspect-square rotate-3 rounded-2xl object-cover"
+                        sizes="(min-width: 1024px) 32rem, 20rem"
+                        src="/assets/images/patrick.jpeg"
+                        style="color: transparent;"
+                      />
+                    </div>
+                  </div><div class="lg:order-first lg:row-span-2">
+                    <h1 class="text-4xl font-bold tracking-tight sm:text-5xl">
+                      👋
+                      <span
+                        class="ml-1 text-transparent bg-clip-text bg-gradient-to-br from-red-400 to-red-600"
+                        >Hi, I'm Patrick.</span
+                      >
+                    </h1>
+                    <div class="mt-6 space-y-7 text-base">
+                      <div>
+                        <h2
+                          class="text-brand-blue text-3xl font-bold tracking-tight"
+                        >
+                          Short Bio
+                        </h2>
+                        <p class="text-base text-gray-700 leading-7 mt-2">
+                          Patrick, a Principal Software Developer at Offstreet.
+                          Originally from Germany, Patrick moved to Canada in
+                          2013 and has since worked with various companies such
+                          as Solvera (acquired), Vivvo (acquired), iQmetrix,
+                          Outpost Health, Bitovi, and Anedot, while serving in
+                          leadership roles and contributing to the development
+                          of design systems and other software solutions. His
+                          current focus is on scalable front-ends. He believes
+                          scalable frontends don't just mean that they can serve
+                          millions of customers of all walks of life, but are
+                          also maintainable, consistent, and iteration proof.
+                        </p>
+                      </div>
+                      <hr />
+                      <div>
+                        <h2
+                          class="text-brand-blue text-3xl font-bold tracking-tight"
+                        >
+                          All the details
+                        </h2>
+
+                        <p class="text-base text-gray-700 leading-7 mt-2">
+                          I'm original from Bavaria, Germany 🇩🇪, but have been
+                          living in Canada 🇨🇦 since 2013. After finishing my
+                          Business Information Systems Diploma I joined the team
+                          at <a href="https://solvera.ca/">Solvera</a> (<a
+                            href="https://newsroom.accenture.com/news/accenture-acquires-solvera-solutions-to-grow-digital-transformation-capabilities-in-western-canada.htm"
+                            >acquired by Accenture</a
+                          >), working as a consultant for various government
+                          clients. During this time I finished my B. Sc. in
+                          Computer Science taking night classes, which I
+                          finished in 2018.
+                        </p>
+
+                        <p class="text-base text-gray-700 leading-7 mt-2">
+                          After 3 years of consulting, I was looking to get
+                          involved with a product. I joined <a
+                            href="https://www.iqmetrix.com/">iQmetrix</a
+                          >, a leader in the Retail management space, before
+                          joining <a href="https://www.vivvo.com/">Vivvo</a> (<a
+                            href="https://www.newswire.ca/news-releases/converge-technology-solutions-corp-acquires-vivvo-application-studios-ltd--837623472.html"
+                            >acquired by Converge Technology Solutions</a
+                          >). At this stage, Vivvo was a small start-up with a
+                          big vision to transform how every citizen interacts
+                          with the government. During this time I served on the
+                          Outreach committee as a Co-Chair for the Digital
+                          Identification & Authentication Council of Canada (<a
+                            href="https://diacc.ca/">DIACC</a
+                          >).
+                        </p>
+
+                        <p class="text-base text-gray-700 leading-7 mt-2">
+                          After leading the architecture of Vivvo's Citizen
+                          One's trust platform, I finished my time with Vivvo
+                          implementing the backbone of identification and
+                          validation that allows an entire province to access
+                          their Health Records digitally. From government trust
+                          framework to health care startup. 2019, before the
+                          pandemic I joined a small team at <a
+                            href="https://www.outpost.health/">Outpost Health</a
+                          > to build a Digital Health platform focused on providing
+                          Digital Health Access and Payments to emerging markets.
+                          The platform has been
+                          <a
+                            href="https://www.unwto.org/news/the-future-is-now-unwto-recognizes-world%E2%80%99s-best-innovators-facing-up-to-covid-19"
+                            >recognized by the UNWTO as a leading solution to
+                            help accelerate the recovery of tourism in the wake
+                            of the pandemic.</a
+                          >
+                        </p>
+
+                        <p class="text-base text-gray-700 leading-7 mt-2">
+                          Taking a break from start-ups, I joined <a
+                            href="https://www.bitovi.com/">Bitovi</a
+                          >, where I became the Co-Director of the React
+                          department shortly after. My contributions were split
+                          between growing the React department and leading and
+                          working with teams at Fortune 500 companies.
+                        </p>
+
+                        <p class="text-base text-gray-700 leading-7 mt-2">
+                          As much as I enjoy consulting, I knew my heart was in
+                          building products. I joined <a
+                            href="https://www.anedot.com/">Anedot</a
+                          >, an online donation platform with over $1B in
+                          transaction volume. During my time there, I was able
+                          to lead the complete rewrite of a 10+ year old RoR
+                          application into a React-based frontend.
+                        </p>
+
+                        <p class="text-base text-gray-700 leading-7 mt-2">
+                          After being involved in many complete rewrites, design
+                          system creations, and greenfield projects, I saw an
+                          opportunity to create a software studio that would
+                          helps startups to move fast, and large corporations
+                          and government entities to move with confidence. Thus,
+                          I founded Kollektiv Software Studio Inc. Kollektiv
+                          Software Studio has contributed to government
+                          agencies, delivered consulting services, and acted as
+                          an early-stage investor.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="lg:pl-20">
+                    <ul role="list">
+                      <li class="flex">
+                        <a
+                          class="group flex text-sm font-medium transition hover:text-red-500 dark dark:hover:text-red-500"
+                          target="_blank"
+                          href="https://twitter.com/ItsPatrickU"
+                          ><svg
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                            class="h-6 w-6 flex-none transition group-hover:fill-red-500"
+                            ><path
+                              d="M20.055 7.983c.011.174.011.347.011.523 0 5.338-3.92 11.494-11.09 11.494v-.003A10.755 10.755 0 0 1 3 18.186c.308.038.618.057.928.058a7.655 7.655 0 0 0 4.841-1.733c-1.668-.032-3.13-1.16-3.642-2.805a3.753 3.753 0 0 0 1.76-.07C5.07 13.256 3.76 11.6 3.76 9.676v-.05a3.77 3.77 0 0 0 1.77.505C3.816 8.945 3.288 6.583 4.322 4.737c1.98 2.524 4.9 4.058 8.034 4.22a4.137 4.137 0 0 1 1.128-3.86A3.807 3.807 0 0 1 19 5.274a7.657 7.657 0 0 0 2.475-.98c-.29.934-.9 1.729-1.713 2.233A7.54 7.54 0 0 0 22 5.89a8.084 8.084 0 0 1-1.945 2.093Z"
+                            ></path></svg
+                          ><span class="ml-4">Follow on Twitter</span></a
+                        >
+                      </li><li class="mt-4 flex">
+                        <a
+                          class="group flex text-sm font-medium transition hover:text-red-500 dark dark:hover:text-red-500"
+                          target="_blank"
+                          href="https://www.instagram.com/itspatricku"
+                          ><svg
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                            class="h-6 w-6 flex-none transition group-hover:fill-red-500"
+                            ><path
+                              d="M12 3c-2.444 0-2.75.01-3.71.054-.959.044-1.613.196-2.185.418A4.412 4.412 0 0 0 4.51 4.511c-.5.5-.809 1.002-1.039 1.594-.222.572-.374 1.226-.418 2.184C3.01 9.25 3 9.556 3 12s.01 2.75.054 3.71c.044.959.196 1.613.418 2.185.23.592.538 1.094 1.039 1.595.5.5 1.002.808 1.594 1.038.572.222 1.226.374 2.184.418C9.25 20.99 9.556 21 12 21s2.75-.01 3.71-.054c.959-.044 1.613-.196 2.185-.419a4.412 4.412 0 0 0 1.595-1.038c.5-.5.808-1.002 1.038-1.594.222-.572.374-1.226.418-2.184.044-.96.054-1.267.054-3.711s-.01-2.75-.054-3.71c-.044-.959-.196-1.613-.419-2.185A4.412 4.412 0 0 0 19.49 4.51c-.5-.5-1.002-.809-1.594-1.039-.572-.222-1.226-.374-2.184-.418C14.75 3.01 14.444 3 12 3Zm0 1.622c2.403 0 2.688.009 3.637.052.877.04 1.354.187 1.67.31.421.163.72.358 1.036.673.315.315.51.615.673 1.035.123.317.27.794.31 1.671.043.95.052 1.234.052 3.637s-.009 2.688-.052 3.637c-.04.877-.187 1.354-.31 1.67-.163.421-.358.72-.673 1.036a2.79 2.79 0 0 1-1.035.673c-.317.123-.794.27-1.671.31-.95.043-1.234.052-3.637.052s-2.688-.009-3.637-.052c-.877-.04-1.354-.187-1.67-.31a2.789 2.789 0 0 1-1.036-.673 2.79 2.79 0 0 1-.673-1.035c-.123-.317-.27-.794-.31-1.671-.043-.95-.052-1.234-.052-3.637s.009-2.688.052-3.637c.04-.877.187-1.354.31-1.67.163-.421.358-.72.673-1.036.315-.315.615-.51 1.035-.673.317-.123.794-.27 1.671-.31.95-.043 1.234-.052 3.637-.052Z"
+                            ></path><path
+                              d="M12 15a3 3 0 1 1 0-6 3 3 0 0 1 0 6Zm0-7.622a4.622 4.622 0 1 0 0 9.244 4.622 4.622 0 0 0 0-9.244Zm5.884-.182a1.08 1.08 0 1 1-2.16 0 1.08 1.08 0 0 1 2.16 0Z"
+                            ></path></svg
+                          ><span class="ml-4">Follow on Instagram</span></a
+                        >
+                      </li><li class="mt-4 flex">
+                        <a
+                          class="group flex text-sm font-medium transition hover:text-red-500 dark dark:hover:text-red-500"
+                          href="https://www.linkedin.com/in/itspatricku/"
+                          target="_blank"
+                          ><svg
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                            class="h-6 w-6 flex-none transition group-hover:fill-red-500"
+                            ><path
+                              d="M18.335 18.339H15.67v-4.177c0-.996-.02-2.278-1.39-2.278-1.389 0-1.601 1.084-1.601 2.205v4.25h-2.666V9.75h2.56v1.17h.035c.358-.674 1.228-1.387 2.528-1.387 2.7 0 3.2 1.778 3.2 4.091v4.715zM7.003 8.575a1.546 1.546 0 01-1.548-1.549 1.548 1.548 0 111.547 1.549zm1.336 9.764H5.666V9.75H8.34v8.589zM19.67 3H4.329C3.593 3 3 3.58 3 4.297v15.406C3 20.42 3.594 21 4.328 21h15.338C20.4 21 21 20.42 21 19.703V4.297C21 3.58 20.4 3 19.666 3h.003z"
+                            ></path></svg
+                          ><span class="ml-4">Follow on LinkedIn</span></a
+                        >
+                      </li><li class="mt-4 dark/40 flex">
+                        <a
+                          class="group flex text-sm font-medium transition hover:text-red-500 dark dark:hover:text-red-500"
+                          href="mailto:patrick@kollektivstudio.com"
+                          ><svg
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                            class="h-6 w-6 flex-none transition group-hover:fill-red-500"
+                            ><path
+                              fill-rule="evenodd"
+                              d="M6 5a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h12a3 3 0 0 0 3-3V8a3 3 0 0 0-3-3H6Zm.245 2.187a.75.75 0 0 0-.99 1.126l6.25 5.5a.75.75 0 0 0 .99 0l6.25-5.5a.75.75 0 0 0-.99-1.126L12 12.251 6.245 7.187Z"
+                            ></path></svg
+                          ><span class="ml-4">patrick@kollektivstudio.com</span
+                          ></a
+                        >
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
 </html>

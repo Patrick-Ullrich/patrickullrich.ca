@@ -1,0 +1,119 @@
+---
+title: "What's new in Create-React-App v4 React 17"
+pubDate: "2020-09-17"
+bannerUrl: "/assets/whats-new-in-create-react-app-v4-and-react-17/banner.jpeg"
+description: "React reached a new major version on October 20th and 4 days later one of our favorite React scaffolding tools Create-React-App followed suit with the release of version 4, that includes React 17. I dug through the features highlighted in the respective blogs and followed PRs to summarize all features that I am most excited for."
+---
+
+React reached a new major version on October 20th [(https://reactjs.org/blog/2020/10/20/react-v17.html)](https://reactjs.org/blog/2020/10/20/react-v17.html) and 4 days later one of our favorite React scaffolding tools Create-React-App followed suit with the release of version 4, that includes React 17.
+
+I dug through the features highlighted in the respective blogs and followed PRs to summarize all features that I am most excited for.
+
+## New JSX Transformation
+
+The React team worked with the Babel team to bring a neat new update to the `react/jsx-runtime` and `react/jsx-dev-runtime` in [Babel version 7.9.0](https://babeljs.io/blog/2020/03/16/7.9.0#a-new-jsx-transform-11154-https-githubcom-babel-babel-pull-11154),
+which allows us to omit `import React from 'react';` from the top of our .jsx / .tsx files.
+Your index file will be the only file that still needs the import. You can read more about the new jsx transformation [here](https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html).
+
+## Event Pooling
+
+I didn’t find this change under the highlights, but I think it’s an important one to point out. React event handlers are passed into instances of `SyntheticEvent`, these are then pooled in the `Event Pool.`
+
+_(If you want to know more about why this was done, check out this Stackoverflow answer. [https://stackoverflow.com/a/53500357/1467478](https://stackoverflow.com/a/53500357/1467478))_
+
+It was the cause of many headscratchers. Imagine following simplified debounce functionality:
+
+```tsx
+const [search, setSearch] = useState("");
+const onChange = (e) => {
+  setTimeout(() => setSearch(e.target.value), 250);
+}; // :(
+return (
+  <div>
+    <input type="text" onChange={onChange} />
+    <p>Search Text: {search}</p>
+  </div>
+);
+```
+
+In React 16 and older, this code would throw an error of `Cannot read property 'value' of null`, on `setTimeout(() => setSearch(e.target.value), 250)}`, but it does work as expected in React 17.
+
+---
+
+## Web Vitals
+
+If you have measured performance in your react app for Google Analytics, you may have used `web-vitals` before.
+
+> _“The `web-vitals` library is a tiny (~1K), modular library for measuring all the [Web Vitals](https://web.dev/vitals/) metrics on real users,
+> in a way that accurately matches how they're measured by Chrome and reported to other Google tools (e.g. [Chrome User Experience Report](https://developers.google.com/web/tools/chrome-user-experience-report),
+> [Page Speed Insights](https://developers.google.com/speed/pagespeed/insights/), [Search Console's Speed Report](https://developers.google.com/search/blog/2019/11/search-console-speed-report)).” — [https://github.com/GoogleChrome/web-vitals](https://github.com/GoogleChrome/web-vitals)_
+
+It allows us to measure metrics for:
+
+- [Cumulative Layout Shift](https://web.dev/cls/)
+- [First Input Delay](https://web.dev/fid/)
+- [Largest Contentful Paint](https://web.dev/lcp/)
+- [First Contentful Paint](https://web.dev/fcp/)
+- [Time to First Byte](https://web.dev/time-to-first-byte/)
+
+Create-React-App’s (CRA) boilerplate now comes set up to record those measurements out of the box.
+If you want to see the values right now, checkout your index.js and pass `console.log` into the `reportWebVitals` function.
+
+![web-vitals-example-output::Displaying web-vitals output in console](/assets/whats-new-in-create-react-app-v4-and-react-17/web-vitals.png)
+
+Furthermore, CRA now has a `measuring-performance` [documentation page](https://create-react-app.dev/docs/measuring-performance/)
+giving examples on how to utilize the new `reportWebVitals` function to log to Google Analytics or your own backend.
+
+---
+
+## react-refresh
+
+My personal favorite update coming with v4 is `react-refresh` enabled by default. If you haven’t heard of `react-refresh`, it essentially will give you the experience of `hot-reload`, but your application will preserve its state.
+
+But it doesn’t just stop there, it also only re-renders the required React components, without reloading the entire app and reloads once you resolved a syntax or run time error without needing you to manually refresh.
+
+Ever worked on a workflow and you had to style some pieces on the very last step? On every change you have to click through the entire flow again, just to see if your change has done what you wanted.
+
+Sure… You might render the component somewhere else in the app or even better, you worked on the component in isolation and this isn’t even a problem. But sometimes, you didn’t. And you start coming up with quick workarounds, such as stringifying the state, logging it, and intializing the component with it… so that on every page reload you are right back where you want it?
+
+…No? Nobody? … Just me?
+
+Anyhow, `react-refresh` swoops in and saves the day.
+
+You can find more information on this feature here in the PR by @charrondev [https://github.com/facebook/create-react-app/pull/8582](https://github.com/facebook/create-react-app/pull/8582).
+
+![hot-reload-live-example::https://github.com/facebook/create-react-app/pull/8582 by https://github.com/charrondev](/assets/whats-new-in-create-react-app-v4-and-react-17/hot-reload.gif)
+
+You will see in the PR the mention of adding `FAST_REFRESH=TRUE`.
+
+---
+
+## TypeScript 4 Support
+
+If you’re using `npx create-react-app --template=typescript` you are probably excited to hear that CRA 4 is coming with TypeScript 4 support.
+I don’t think I could ever do [TypeScripts announcement blog posts](https://devblogs.microsoft.com/typescript/announcing-typescript-4-0/) justice, but some noteworthy features are:
+
+- More Tuples features such as Labeled Tuple Elements
+- Short Circuiting Assignment Operators
+- Custom JSX Factories
+- Handy Optional Chaining Refactoring
+
+That being said, it seems as of writing of this article there are currently some errors with the TypeScript template. I actually encountered the same issue today while upgrading one of our projects.
+
+`Cannot add property noFallthroughCasesInSwitch, object is not extensible` on `verifyTypeScriptSetup.js:210`. There are some Workarounds suggested that you can give a try, otherwise hopefully this will be resolved soon.
+
+Follow here to get an update on this issue: [https://github.com/facebook/create-react-app/issues/9429](https://github.com/facebook/create-react-app/issues/9429)
+
+---
+
+## ESLint v7.0.0 & Jest 26
+
+Both ESLint and Jest have gotten an upgrade. Personally I didn’t find anything that really stood out to me, but definitely check out the release notes here:
+
+- [https://eslint.org/blog/2020/05/eslint-v7.0.0-released](https://eslint.org/blog/2020/05/eslint-v7.0.0-released)
+- [https://jestjs.io/blog/2020/05/05/jest-26](https://jestjs.io/blog/2020/05/05/jest-26)
+
+---
+
+I can’t wait to update some bigger projects to include `react-refresh` and `reportWebVitals` will definitely replace my hacked together solution for Google Analytics from a year ago.
+I am also weirdly excited to omit `import React from 'react'` on top of my .jsx files going forward.
