@@ -38,6 +38,13 @@ module.exports = {
           teal: "rgb(119, 182, 190)",
         },
       },
+      fill: {
+        brand: {
+          red: "rgb(238, 68, 81)",
+          blue: "rgb(4, 43, 59)",
+          teal: "rgb(119, 182, 190)",
+        },
+      },
     },
   },
   plugins: [],
