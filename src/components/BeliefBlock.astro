@@ -1,0 +1,50 @@
+---
+// Personal site — centered belief statement (dark, gold accent rule).
+---
+
+<section class="pn-belief">
+  <div class="pn-belief-inner">
+    <div class="pn-belief-eyebrow">How I Work</div>
+    <div class="pn-belief-rule" aria-hidden="true"></div>
+    <p class="pn-belief-statement">
+      I'm pragmatic by default. I keep up with what's hot — but for real systems
+      I care far more about what works in practice than textbook definitions or
+      hype cycles.
+    </p>
+  </div>
+</section>
+
+<style>
+  .pn-belief {
+    background: var(--dark-surface);
+  }
+  .pn-belief-inner {
+    max-width: 940px;
+    margin: 0 auto;
+    padding: clamp(64px, 14vw, 120px) 24px;
+    text-align: center;
+  }
+  .pn-belief-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 15px;
+    letter-spacing: 0.04em;
+    color: var(--accent-belief);
+  }
+  .pn-belief-rule {
+    width: 40px;
+    height: 3px;
+    background: var(--accent-belief);
+    margin: 22px auto 0;
+    border-radius: 2px;
+  }
+  .pn-belief-statement {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.18;
+    font-size: clamp(26px, 6vw, 38px);
+    overflow-wrap: break-word;
+    color: var(--cloud);
+    margin: 28px 0 0;
+  }
+</style>

@@ -1,0 +1,69 @@
+---
+// Shared footer for light/cloud pages (blog). The home page's contact
+// section carries its own (green-accented) footer.
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <div class="site-footer-divider" aria-hidden="true"></div>
+    <div class="site-footer-row">
+      <div class="site-footer-left">
+        <span class="site-footer-monogram" aria-hidden="true">PU</span>
+        <span class="site-footer-location">Based in Saskatchewan, Canada</span>
+      </div>
+      <span class="site-footer-copy">© {currentYear} Patrick Ullrich</span>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: var(--cloud);
+  }
+  .site-footer-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px clamp(40px, 8vw, 56px);
+  }
+  .site-footer-divider {
+    height: 1px;
+    background: rgba(23, 23, 23, 0.12);
+    margin: 0 0 24px;
+  }
+  .site-footer-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .site-footer-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .site-footer-monogram {
+    width: 28px;
+    height: 28px;
+    border-radius: var(--radius-sm);
+    background: var(--accent);
+    color: var(--accent-ink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 12px;
+  }
+  .site-footer-location {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--grey-500);
+  }
+  .site-footer-copy {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--grey-500);
+  }
+</style>

@@ -1,53 +1,120 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import BaseHead from "../components/BaseHead.astro";
-import Header from "../components/Header.astro";
+import SiteNav from "../components/SiteNav.astro";
+import SiteFooter from "../components/SiteFooter.astro";
 import FormattedDate from "../components/FormattedDate.astro";
+import { SITE_TITLE } from "../consts";
+import { Image } from "astro:assets";
 
 type Props = CollectionEntry<"blog">["data"];
 
-const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage, bannerUrl } =
+  Astro.props;
+const hero = heroImage ?? bannerUrl;
 ---
 
+<!DOCTYPE html>
 <html lang="en">
-	<head>
-		<BaseHead title={title} description={description} />
-		<style>
-			.title {
-				font-size: 2em;
-				margin: 0.25em 0 0;
-			}
-			hr {
-				border-top: 1px solid #ddd;
-				margin: 1rem 0;
-			}
-			.last-updated-on {
-				font-style: italic;
-			}
-		</style>
-	</head>
-
-	<body>
-		<Header />
-		<main>
-			<article>
-				{
-					heroImage && (
-						<img width={720} height={360} src={heroImage} alt="" />
-					)
-				}
-				<h1 class="title">{title}</h1>
-				<FormattedDate date={pubDate} />
-				{
-					updatedDate && (
-						<div class="last-updated-on">
-							Last updated on <FormattedDate date={updatedDate} />
-						</div>
-					)
-				}
-				<hr />
-				<slot />
-			</article>
-		</main>
-	</body>
+  <head>
+    <BaseHead
+      title={`${title} — ${SITE_TITLE}`}
+      description={description}
+      image={hero?.src}
+    />
+  </head>
+  <body class="blog-body">
+    <SiteNav />
+    <main class="post-main">
+      <article class="post">
+        <a href="/blog" class="post-back">← All writing</a>
+        <p class="post-meta">
+          <FormattedDate date={pubDate} />
+          {
+            updatedDate && (
+              <span class="post-updated">
+                {" "}
+                · Updated <FormattedDate date={updatedDate} />
+              </span>
+            )
+          }
+        </p>
+        <h1 class="post-title">{title}</h1>
+        {
+          hero && (
+            <Image
+              class="post-hero"
+              src={hero}
+              alt=""
+              widths={[480, 768, 1200]}
+              sizes="(max-width: 768px) 92vw, 672px"
+              loading="eager"
+              fetchpriority="high"
+            />
+          )
+        }
+        <div class="prose">
+          <slot />
+        </div>
+      </article>
+    </main>
+    <SiteFooter />
+  </body>
 </html>
+
+<style>
+  .blog-body {
+    margin: 0;
+    background: var(--cloud);
+    font-family: var(--font-body);
+  }
+  .blog-body a:focus-visible {
+    outline: 2px solid var(--signal);
+    outline-offset: 3px;
+    border-radius: var(--radius-sm);
+  }
+  .post-main {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: clamp(40px, 8vw, 72px) 24px clamp(48px, 9vw, 88px);
+  }
+  .post-back {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--grey-500);
+    text-decoration: none;
+    margin-bottom: 28px;
+  }
+  .post-back:hover {
+    color: var(--signal);
+  }
+  .post-meta {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--grey-500);
+    margin: 0;
+  }
+  .post-title {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    line-height: 1.1;
+    font-size: clamp(30px, 6vw, 44px);
+    color: var(--terminal);
+    margin: 10px 0 0;
+  }
+  .post-hero {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-subtle);
+    margin: 28px 0 0;
+    display: block;
+  }
+  .prose {
+    margin-top: 36px;
+  }
+</style>

@@ -1,0 +1,238 @@
+---
+// Personal site — career section (timeline view, light/cloud surface).
+// Data sourced from Patrick's LinkedIn export (accurate dates & roles).
+interface CareerEntry {
+  era: string;
+  company: string;
+  role: string;
+  note: string;
+  acquiredBy?: string;
+}
+
+const CAREER: CareerEntry[] = [
+  {
+    era: "Now",
+    company: "Offstreet",
+    role: "VP of Engineering",
+    note: "Leading engineering for a product making parking & permit management frictionless. Grew with the company from Principal → Director → VP.",
+  },
+  {
+    era: "2022 · Now",
+    company: "Kollektiv Software Studio",
+    role: "Founder & President",
+    note: "My studio — expert front-end software consulting for startups and government, plus early-stage investing.",
+  },
+  {
+    era: "2022",
+    company: "Anedot",
+    role: "Frontend Software Developer",
+    note: "Online donation platform with $1B+ in volume. Led the PoC replacing a 10-year Rails app with a React front-end on the Rails API.",
+  },
+  {
+    era: "2021",
+    company: "Bitovi",
+    role: "Co-Director, React Department",
+    note: "Grew the React practice — Marketing, Sales & Delivery. Greenfield builds and best-practice training for enterprises like Apple.",
+  },
+  {
+    era: "2019",
+    company: "Outpost Health",
+    role: "Senior Software Developer",
+    note: "Award-winning global health-fintech. Digital tools helping patients, providers, and nurses deliver care more effectively.",
+  },
+  {
+    era: "2018",
+    company: "Call The Shot Media",
+    role: "CTO & Co-Founder",
+    note: "Co-founded a fan-engagement app bringing live-sports prediction and friendly competition into the modern age.",
+  },
+  {
+    era: "2017",
+    company: "Vivvo",
+    role: "Senior Software Developer",
+    acquiredBy: "Converge Technology Solutions",
+    note: "Citizen trust & digital-identity platform for government. I managed the service that gave every Saskatchewan citizen access to their digital health records, and served on the board of DIACC.",
+  },
+  {
+    era: "2016",
+    company: "iQmetrix",
+    role: "Software Developer",
+    note: "Retail management platform — my move from consulting into product.",
+  },
+  {
+    era: "2013",
+    company: "Solvera",
+    role: "IT Consultant",
+    acquiredBy: "Accenture",
+    note: "Started my career consulting for Saskatchewan government and enterprise teams — including contracts with SaskPower and SLGA — while finishing my B.Sc. at the University of Regina.",
+  },
+];
+
+// Multicolor timeline palette, cycled by index.
+const PALETTE = [
+  "var(--signal)",
+  "var(--gold)",
+  "var(--blue)",
+  "var(--green)",
+  "var(--protocol)",
+];
+const dotColor = (i: number) => PALETTE[i % PALETTE.length];
+---
+
+<section id="path" class="pn-path">
+  <div class="pn-path-inner">
+    <div class="pn-path-eyebrow">The Path</div>
+    <h2 class="pn-path-h2">From government IT to VP of Engineering.</h2>
+    <p class="pn-path-intro">
+      A decade-plus across consulting, health-fintech, a billion-dollar donation
+      platform, a co-founded startup, and the React department at a Fortune-500
+      consultancy — before founding my own studio.
+    </p>
+
+    <ol class="pn-timeline">
+      <span class="pn-rail" aria-hidden="true"></span>
+      {
+        CAREER.map((c, i) => (
+          <li
+            class="pn-timeline-item"
+            class:list={[{ "pn-timeline-item--last": i === CAREER.length - 1 }]}
+          >
+            <span
+              class="pn-dot"
+              style={`background:${dotColor(i)};border-color:${dotColor(i)};`}
+              aria-hidden="true"
+            />
+            <div class="pn-timeline-head">
+              <h3 class="pn-company">{c.company}</h3>
+              {c.era ? <span class="pn-era">{c.era}</span> : null}
+              {c.acquiredBy ? (
+                <span class="pn-tag" title={`Acquired by ${c.acquiredBy}`}>
+                  Acquired
+                </span>
+              ) : null}
+            </div>
+            <div class="pn-role">{c.role}</div>
+            <p class="pn-note">{c.note}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>
+
+<style>
+  .pn-path {
+    background: var(--cloud);
+  }
+  .pn-path-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: clamp(64px, 12vw, 112px) 24px;
+  }
+  .pn-path-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 15px;
+    letter-spacing: 0.04em;
+    color: var(--accent-path);
+  }
+  .pn-path-h2 {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    font-size: clamp(28px, 7vw, 44px);
+    overflow-wrap: break-word;
+    margin: 12px 0 8px;
+    color: var(--terminal);
+  }
+  .pn-path-intro {
+    font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--grey-600);
+    max-width: 64ch;
+    margin: 0;
+  }
+  .pn-timeline {
+    list-style: none;
+    margin: 52px 0 0;
+    padding: 0;
+    position: relative;
+  }
+  .pn-rail {
+    position: absolute;
+    left: 7px;
+    top: 8px;
+    bottom: 8px;
+    width: 2px;
+    background: rgba(23, 23, 23, 0.14);
+  }
+  .pn-timeline-item {
+    position: relative;
+    padding-left: 40px;
+    padding-bottom: 34px;
+  }
+  .pn-timeline-item--last {
+    padding-bottom: 0;
+  }
+  .pn-dot {
+    position: absolute;
+    left: 0;
+    top: 4px;
+    width: 16px;
+    height: 16px;
+    border-radius: 9999px;
+    border: 2px solid var(--terminal);
+    box-sizing: border-box;
+  }
+  .pn-timeline-head {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .pn-company {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 20px;
+    letter-spacing: -0.02em;
+    color: var(--terminal);
+    margin: 0;
+  }
+  .pn-era {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 700;
+    /* Use a dark neutral instead of the bright palette color so the small
+       12px label meets WCAG AA on the light cloud surface (gold/green/blue
+       at 12px were below 4.5:1). The bright palette color still appears on
+       the adjacent timeline dot, preserving the multicolor identity. */
+    color: var(--grey-500);
+  }
+  .pn-tag {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--grey-500);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    padding: 2px 6px;
+    line-height: 1.4;
+    cursor: help;
+  }
+  .pn-role {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--grey-500);
+    margin: 3px 0 7px;
+  }
+  .pn-note {
+    font-family: var(--font-body);
+    font-size: 15.5px;
+    line-height: 1.58;
+    color: var(--grey-600);
+    margin: 0;
+    max-width: 62ch;
+  }
+</style>

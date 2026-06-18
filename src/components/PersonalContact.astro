@@ -1,0 +1,198 @@
+---
+// Personal site — contact + footer (dark, green accent).
+const currentYear = new Date().getFullYear();
+---
+
+<section id="contact" class="pn-contact-section">
+  <div class="pn-contact-inner">
+    <div class="pn-contact-top">
+      <div class="pn-contact-eyebrow">Let's Talk</div>
+      <h2 class="pn-contact-h2">
+        Building something?<br />Let's build it well.
+      </h2>
+      <p class="pn-contact-sub">
+        I keep my inbox clutter-free, so skip the email — a DM on X or a message
+        on LinkedIn is the fastest way to reach me.
+      </p>
+      <div class="pn-contact-actions">
+        <a
+          href="https://x.com/ItsPatrickU"
+          target="_blank"
+          rel="noreferrer"
+          class="pn-msg pn-msg--primary"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"
+            ><path
+              d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+            ></path></svg
+          >
+          Message me on X
+        </a>
+        <a
+          href="https://www.linkedin.com/in/itspatricku/"
+          target="_blank"
+          rel="noreferrer"
+          class="pn-msg pn-msg--secondary"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"
+            ><path
+              d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"
+            ></path></svg
+          >
+          Connect on LinkedIn
+        </a>
+        <a
+          href="https://www.instagram.com/itspatricku"
+          target="_blank"
+          rel="noreferrer"
+          class="pn-social"
+          aria-label="Instagram"
+        >
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.6"
+            aria-hidden="true"
+            ><rect x="2" y="2" width="20" height="20" rx="5"></rect><circle
+              cx="12"
+              cy="12"
+              r="4.2"></circle><circle
+              cx="17.4"
+              cy="6.6"
+              r="1.1"
+              fill="currentColor"
+              stroke="none"></circle></svg
+          >
+        </a>
+      </div>
+    </div>
+
+    <div class="pn-divider" aria-hidden="true"></div>
+    <div class="pn-footer">
+      <div class="pn-footer-left">
+        <span class="pn-footer-monogram" aria-hidden="true">PU</span>
+        <span class="pn-footer-location">Based in Saskatchewan, Canada</span>
+      </div>
+      <span class="pn-footer-copy">© {currentYear} Patrick Ullrich</span>
+    </div>
+  </div>
+</section>
+
+<style>
+  .pn-contact-section {
+    background: var(--dark-surface);
+    color: var(--cloud);
+  }
+  .pn-contact-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: clamp(64px, 12vw, 112px) 24px clamp(40px, 8vw, 64px);
+  }
+  .pn-contact-top {
+    max-width: 760px;
+  }
+  .pn-contact-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 15px;
+    letter-spacing: 0.04em;
+    color: var(--green-on-dark);
+  }
+  .pn-contact-h2 {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    line-height: 1.05;
+    font-size: clamp(28px, 7vw, 46px);
+    overflow-wrap: break-word;
+    margin: 16px 0 0;
+    color: var(--cloud);
+  }
+  .pn-contact-sub {
+    font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 1.6;
+    color: rgba(246, 246, 247, 0.8);
+    margin: 18px 0 0;
+    max-width: 52ch;
+  }
+  .pn-contact-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 28px;
+    flex-wrap: wrap;
+  }
+  .pn-msg {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 15px;
+    padding: 13px 22px;
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+  }
+  .pn-msg--primary {
+    color: var(--accent-contact-ink);
+    background: var(--accent-contact);
+  }
+  .pn-msg--secondary {
+    color: var(--cloud);
+    background: transparent;
+    border: 1px solid rgba(246, 246, 247, 0.3);
+  }
+  .pn-social {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-sm);
+    border: 1px solid rgba(246, 246, 247, 0.22);
+    color: var(--cloud);
+  }
+  .pn-divider {
+    height: 1px;
+    background: rgba(246, 246, 247, 0.16);
+    margin: 56px 0 24px;
+  }
+  .pn-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .pn-footer-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .pn-footer-monogram {
+    width: 28px;
+    height: 28px;
+    border-radius: var(--radius-sm);
+    background: var(--accent-contact);
+    color: var(--accent-contact-ink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 12px;
+  }
+  .pn-footer-location {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: rgba(246, 246, 247, 0.6);
+  }
+  .pn-footer-copy {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: rgba(246, 246, 247, 0.5);
+  }
+</style>

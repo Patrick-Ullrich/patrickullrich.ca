@@ -1,0 +1,105 @@
+---
+// Shared site navigation (dark surface, red accent). Works from any page:
+// in-page anchors use absolute /#hash so they resolve from /blog too.
+const links = [
+  { label: "About", href: "/#about" },
+  { label: "Path", href: "/#path" },
+  { label: "Blog", href: "/blog" },
+];
+---
+
+<nav class="pn-nav">
+  <div class="pn-nav-inner">
+    <a href="/" class="pn-brand" aria-label="Patrick Ullrich — home">
+      <span class="pn-monogram" aria-hidden="true">PU</span>
+      <span class="pn-brand-name">Patrick Ullrich</span>
+    </a>
+    <div class="pn-nav-right">
+      <div class="pn-links">
+        {links.map((l) => <a href={l.href} class="pn-link">{l.label}</a>)}
+      </div>
+      <a href="/#contact" class="pn-cta">Get in touch</a>
+    </div>
+  </div>
+</nav>
+
+<style>
+  .pn-nav {
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    background: var(--dark-surface);
+    border-bottom: 1px solid rgba(246, 246, 247, 0.14);
+  }
+  .pn-nav-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .pn-brand {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    text-decoration: none;
+  }
+  .pn-monogram {
+    width: 34px;
+    height: 34px;
+    border-radius: var(--radius-sm);
+    background: var(--accent);
+    color: var(--accent-ink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 15px;
+    letter-spacing: -0.03em;
+  }
+  .pn-brand-name {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 16px;
+    letter-spacing: -0.02em;
+    color: var(--cloud);
+  }
+  .pn-nav-right {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+  }
+  .pn-links {
+    display: flex;
+    gap: 24px;
+  }
+  .pn-link {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    color: var(--cloud);
+    opacity: 0.85;
+    text-decoration: none;
+  }
+  .pn-cta {
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 14px;
+    color: var(--accent-ink);
+    background: var(--accent);
+    padding: 9px 16px;
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+  }
+  .pn-link:hover,
+  .pn-cta:hover,
+  .pn-brand:hover {
+    opacity: 0.78;
+  }
+  @media (max-width: 820px) {
+    .pn-links {
+      display: none;
+    }
+  }
+</style>

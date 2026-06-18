@@ -1,9 +1,11 @@
 ---
 import BaseHead from "../../components/BaseHead.astro";
-import Header from "../../components/Header.astro";
+import SiteNav from "../../components/SiteNav.astro";
+import SiteFooter from "../../components/SiteFooter.astro";
+import FormattedDate from "../../components/FormattedDate.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../../consts";
 import { getCollection } from "astro:content";
-import FormattedDate from "../../components/FormattedDate.astro";
+import { Image } from "astro:assets";
 
 const posts = (await getCollection("blog")).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
@@ -13,99 +15,162 @@ const posts = (await getCollection("blog")).sort(
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <BaseHead title={`Writing — ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
   </head>
-  <body>
-    <div class="mx-auto relative">
-      <main class="mx-4 text-gray-900">
-        <div class="sm:px-8 mb-16">
-          <div class="mx-auto max-w-7xl lg:px-8">
-            <div class="relative px-4 lg:px-12">
-              <div class="mb-20">
-                <Header title={SITE_TITLE} />
-              </div>
-              <div>
-                <svg
-                  class="absolute inset-x-0 top-0 -z-10 h-[64rem] w-full stroke-gray-200 [mask-image:radial-gradient(32rem_32rem_at_center,white,transparent)]"
-                  aria-hidden="true"
-                >
-                  <defs>
-                    <pattern
-                      id="1f932ae7-37de-4c0a-a8b0-a6e3b4d44b84"
-                      width="200"
-                      height="200"
-                      x="50%"
-                      y="-1"
-                      patternUnits="userSpaceOnUse"
-                    >
-                      <path d="M.5 200V.5H200" fill="none"></path>
-                    </pattern>
-                  </defs>
-                  <svg x="50%" y="-1" class="overflow-visible fill-gray-50">
-                    <path
-                      d="M-200 0h201v201h-201Z M600 0h201v201h-201Z M-400 600h201v201h-201Z M200 800h201v201h-201Z"
-                      stroke-width="0"></path>
-                  </svg>
-                  <rect
-                    width="100%"
-                    height="100%"
-                    stroke-width="0"
-                    fill="url(#1f932ae7-37de-4c0a-a8b0-a6e3b4d44b84)"></rect>
-                </svg>
+  <body class="blog-body">
+    <SiteNav />
+    <main class="blog-main">
+      <header class="blog-head">
+        <p class="blog-eyebrow">Writing</p>
+        <h1 class="blog-title">From the Blog.</h1>
+        <p class="blog-intro">
+          Notes on front-end engineering, React, and building software that
+          lasts.
+        </p>
+      </header>
 
-                <h1 class="text-4xl font-bold tracking-tight sm:text-5xl">
-                  <span
-                    class="ml-1 text-transparent bg-clip-text bg-gradient-to-br from-red-400 to-red-600"
-                    >From the Blog</span
-                  >
-                </h1>
-                <div class="mt-16 space-y-20 lg:mt-20 lg:space-y-20">
-                  {
-                    posts.map((post) => (
-                      <a href={`/blog/${post.slug}/`}>
-                        <span class="hidden">{post.data.description}</span>
-                        <article class="relative isolate flex flex-col gap-8 lg:flex-row">
-                          <div class="relative aspect-[16/9] sm:aspect-[2/1] lg:aspect-square lg:w-64 lg:shrink-0">
-                            <img
-                              src={post.data.bannerUrl}
-                              alt=""
-                              class="absolute inset-0 h-full w-full rounded-2xl bg-gray-50 object-cover"
-                            />
-                            <div class="absolute inset-0 rounded-2xl ring-1 ring-inset ring-gray-900/10" />
-                          </div>
-                          <div>
-                            <div class="flex items-center gap-x-4 text-xs">
-                              <span class="text-gray-500">
-                                <FormattedDate date={post.data.pubDate} />
-                              </span>
-                              <a
-                                href={`/blog/${post.slug}/`}
-                                class="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100"
-                              >
-                                Marketing
-                              </a>
-                            </div>
-                            <div class="group relative max-w-xl">
-                              <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-brand-red">
-                                <a href={`/blog/${post.slug}/`}>
-                                  {post.data.title}
-                                </a>
-                              </h3>
-                              <p class="mt-5 text-sm leading-6 text-gray-600">
-                                {post.data.description}
-                              </p>
-                            </div>
-                          </div>
-                        </article>
-                      </a>
-                    ))
-                  }
+      <ul class="post-list">
+        {
+          posts.map((post, i) => (
+            <li class="post-item">
+              <a href={`/blog/${post.id}/`} class="post-card">
+                {post.data.bannerUrl && (
+                  <div class="post-media">
+                    <Image
+                      src={post.data.bannerUrl}
+                      alt=""
+                      widths={[320, 480, 760]}
+                      sizes="(max-width: 720px) 88vw, 240px"
+                      loading={i === 0 ? "eager" : "lazy"}
+                    />
+                  </div>
+                )}
+                <div class="post-body">
+                  <span class="post-date">
+                    <FormattedDate date={post.data.pubDate} />
+                  </span>
+                  <h2 class="post-heading">{post.data.title}</h2>
+                  <p class="post-desc">{post.data.description}</p>
+                  <span class="post-more">Read article →</span>
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </main>
-    </div>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </main>
+    <SiteFooter />
   </body>
 </html>
+
+<style>
+  .blog-body {
+    margin: 0;
+    background: var(--cloud);
+    font-family: var(--font-body);
+  }
+  .blog-body a:focus-visible {
+    outline: 2px solid var(--signal);
+    outline-offset: 3px;
+    border-radius: var(--radius-sm);
+  }
+  .blog-main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: clamp(48px, 9vw, 80px) 24px clamp(48px, 9vw, 88px);
+  }
+  .blog-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 15px;
+    letter-spacing: 0.04em;
+    color: var(--signal);
+    margin: 0;
+  }
+  .blog-title {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    font-size: clamp(34px, 8vw, 52px);
+    color: var(--terminal);
+    margin: 10px 0 0;
+  }
+  .blog-intro {
+    font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--grey-600);
+    max-width: 60ch;
+    margin: 14px 0 0;
+  }
+  .post-list {
+    list-style: none;
+    margin: clamp(36px, 6vw, 60px) 0 0;
+    padding: 0;
+  }
+  .post-item + .post-item {
+    border-top: 1px solid var(--border-subtle);
+  }
+  .post-card {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 28px;
+    align-items: center;
+    padding: 28px 0;
+    text-decoration: none;
+  }
+  .post-media {
+    aspect-ratio: 16 / 10;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: var(--grey-100);
+    border: 1px solid var(--border-subtle);
+  }
+  .post-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .post-date {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--grey-500);
+  }
+  .post-heading {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    font-size: 22px;
+    line-height: 1.2;
+    color: var(--terminal);
+    margin: 8px 0 0;
+    transition: color 120ms ease;
+  }
+  .post-card:hover .post-heading {
+    color: var(--signal);
+  }
+  .post-desc {
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--grey-600);
+    margin: 10px 0 0;
+    max-width: 64ch;
+  }
+  .post-more {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--signal);
+    margin: 14px 0 0;
+  }
+  @media (max-width: 720px) {
+    .post-card {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    .post-media {
+      aspect-ratio: 16 / 9;
+    }
+  }
+</style>

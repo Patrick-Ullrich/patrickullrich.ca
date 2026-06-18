@@ -1,50 +1,171 @@
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-strong,
-b {
-  color: #222;
+@import "tailwindcss";
+
+/* ---- Brand palette (Tailwind v4 @theme) ----
+   A single --color-brand-* token generates every utility category:
+   text-brand-red, bg-brand-blue, ring-brand-red, border-brand-red,
+   fill-brand-red, stroke-brand-red, etc. Preserves the old
+   tailwind.config.cjs brand colors used by the blog pages / Header. */
+@theme {
+  --color-brand-red: rgb(238 68 81);
+  --color-brand-blue: rgb(4 43 59);
+  --color-brand-teal: rgb(119 182 190);
 }
-a {
-  color: #3273dc;
+
+/* ---- Personal-site design tokens (Kollektiv brand) ---- */
+:root {
+  /* Brand palette */
+  --gold: #f8bc0e;
+  --gold-deep: #dda600;
+  --terminal: #171717;
+  --cloud: #f6f6f7;
+  --white: #ffffff;
+  --ink: #0b2642;
+  --protocol: #442aad;
+  --signal: #d81203;
+  --green: #1f8a4c;
+  --blue: #2f6fe0;
+
+  /* AA-safe accent variants — used where the raw brand color fails WCAG
+     contrast as small text / as a fill behind white text. The raw brand
+     colors stay on large display, fills behind dark ink, dots and rules. */
+  --signal-on-dark: #e8493b; /* red accent text on a dark surface */
+  --green-on-dark: #2fb76c; /* green accent text on a dark surface */
+  --blue-on-light: #2a5fc9; /* blue accent text on the cloud surface */
+  --green-fill: #1a7d45; /* green fill so white text passes AA */
+
+  /* Neutral ramp */
+  --grey-100: #ececee;
+  --grey-200: #dcdcdf;
+  --grey-500: #5e5e66;
+  --grey-600: #3c3c42;
+  --grey-700: #2a2a2e;
+  --border-subtle: #dcdcdf;
+
+  /* Type */
+  --font-heading: "Inter", system-ui, -apple-system, sans-serif;
+  --font-body: "DM Sans", system-ui, -apple-system, sans-serif;
+  --font-mono: "Courier Prime", "Courier New", ui-monospace, monospace;
+
+  /* Radii */
+  --radius-sm: 2px;
+  --radius-lg: 8px;
+
+  /* Section accent system (multicolor mode, defaults) */
+  --accent: var(--signal); /* primary = signal red */
+  --accent-ink: var(--white); /* white ink on red */
+  --dark-surface: var(--terminal); /* hero = black */
+
+  --accent-belief: var(--gold);
+  --accent-path: var(--blue-on-light);
+  --accent-contact: var(--green-fill);
+  --accent-contact-ink: var(--white);
 }
-nav a {
-  margin-right: 10px;
+
+/* Smooth-scroll only when the user hasn't requested reduced motion
+   (in-page anchor nav can be vestibular-triggering otherwise). */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
 }
-textarea {
-  width: 100%;
-  font-size: 16px;
-}
-input {
-  font-size: 16px;
-}
-content {
-  line-height: 1.6;
-}
-table {
-  width: 100%;
-}
+
+/* ---- Minimal global reset ---- */
 img {
   max-width: 100%;
   height: auto;
 }
-code {
-  padding: 2px 5px;
-  background-color: #f2f2f2;
+
+/* ---- Markdown / blog prose (brand-aligned) ----
+   Applied to the .prose wrapper around rendered blog content. The personal
+   homepage uses its own component-scoped styles and is unaffected. */
+.prose {
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--grey-700);
 }
-pre {
-  padding: 1rem;
+.prose > :first-child {
+  margin-top: 0;
 }
-pre > code {
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4 {
+  font-family: var(--font-heading);
+  letter-spacing: -0.02em;
+  color: var(--terminal);
+  line-height: 1.2;
+}
+.prose h2 {
+  font-weight: 800;
+  font-size: 28px;
+  margin: 2em 0 0.6em;
+}
+.prose h3 {
+  font-weight: 700;
+  font-size: 21px;
+  margin: 1.7em 0 0.5em;
+}
+.prose h4 {
+  font-weight: 700;
+  font-size: 18px;
+  margin: 1.5em 0 0.5em;
+}
+.prose p,
+.prose ul,
+.prose ol {
+  margin: 0 0 1.15em;
+}
+.prose ul,
+.prose ol {
+  padding-left: 1.3em;
+}
+.prose li {
+  margin: 0.3em 0;
+}
+.prose a {
+  color: var(--signal);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.prose a:hover {
+  opacity: 0.78;
+}
+.prose strong,
+.prose b {
+  color: var(--terminal);
+  font-weight: 700;
+}
+.prose img {
+  border-radius: var(--radius-lg);
+  margin: 1.6em 0;
+}
+.prose code {
+  font-family: var(--font-mono);
+  font-size: 0.88em;
+  background: var(--grey-100);
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+}
+.prose pre {
+  padding: 1rem 1.2rem;
+  border-radius: var(--radius-lg);
+  overflow-x: auto;
+  margin: 1.5em 0;
+}
+.prose pre code {
   all: unset;
+  font-family: var(--font-mono);
 }
-blockquote {
-  border: 1px solid #999;
-  color: #222;
-  padding: 2px 0px 2px 20px;
-  margin: 0px;
+.prose blockquote {
+  border-left: 3px solid var(--signal);
+  margin: 1.4em 0;
+  padding: 0.2em 0 0.2em 1.1em;
+  color: var(--grey-600);
   font-style: italic;
+}
+.prose hr {
+  border: none;
+  border-top: 1px solid var(--border-subtle);
+  margin: 2em 0;
 }
