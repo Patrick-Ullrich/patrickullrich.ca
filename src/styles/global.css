@@ -180,3 +180,39 @@ img {
   border-top: 1px solid var(--border-subtle);
   margin: 2em 0;
 }
+
+/* ---- Embedded tweets (astro-embed, static oEmbed HTML, no client JS) ----
+   A bare x.com status URL on its own line in an .mdx post renders as
+   <astro-embed-tweet><blockquote class="twitter-tweet"><p>…</p>— Name (@handle) <a>date</a></blockquote>.
+   Style it as a card and undo the generic .prose blockquote treatment. */
+.prose astro-embed-tweet {
+  display: block;
+  margin: 1.6em 0;
+}
+.prose .twitter-tweet {
+  --tc-padding: 18px 20px;
+  --tc-border-color: var(--border-subtle);
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  margin: 0;
+  font-style: normal;
+  color: var(--grey-700);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.5;
+}
+.prose .twitter-tweet p {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--grey-700);
+  margin: 0 0 12px;
+  white-space: pre-line;
+}
+.prose .twitter-tweet a {
+  color: var(--signal);
+  text-decoration: none;
+}
+.prose .twitter-tweet a:hover {
+  text-decoration: underline;
+}
