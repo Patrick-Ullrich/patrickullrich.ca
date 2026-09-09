@@ -97,9 +97,24 @@ const links = [
   .pn-brand:hover {
     opacity: 0.78;
   }
+  /* Narrow screens: brand on its own row, links + CTA on a second row.
+     Keeps every destination reachable without a menu toggle. */
   @media (max-width: 820px) {
+    .pn-nav-inner {
+      flex-wrap: wrap;
+      row-gap: 12px;
+      padding: 12px 24px;
+    }
+    .pn-nav-right {
+      flex: 1 0 100%;
+      justify-content: space-between;
+      gap: 16px;
+    }
     .pn-links {
-      display: none;
+      gap: 20px;
+    }
+    .pn-cta {
+      padding: 7px 12px;
     }
   }
 </style>
