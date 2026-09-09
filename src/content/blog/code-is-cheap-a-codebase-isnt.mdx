@@ -8,11 +8,23 @@ description: "Why I still review PRs when AI writes the code: what a review can 
 
 I've been thinking about the purpose of PR reviews a lot lately, because several related trends landed on my timeline at once.
 
-[Jack Ellis](https://x.com/JackEllis/status/2096999428028600492), CTO of Fathom Analytics, argues that designing before coding only made sense when a wrong build cost tens of thousands of dollars. Now that code is cheap, his advice is "build first, test, rebuild" and engineer from there. I mostly agree with him. In practice, though, I see most engineers trying to refactor their way to the right solution instead of rebuilding.
+First, Jack Ellis, CTO of Fathom Analytics:
 
-Then [Dylan Garcia's tweet](https://x.com/_dylanga/status/2096638574351327371). His take: the most important part of a PR review now is "how quickly you can recover from a mistake caused by the PR". I'm all about [two-way doors](https://s2.q4cdn.com/299287126/files/doc_financials/annual/2015-Letter-to-Shareholders.PDF), so I relate. He does add a caveat: for migrations, DNS, or data leaving your control, slow down and do it properly.
+https://x.com/JackEllis/status/2096999428028600492
 
-And Uncle Bob tweeted that his ["current strategy is to not read any of the code written by my agents"](https://x.com/unclebobmartin/status/2080257779395154409). His argument: with enough constraints (unit tests, Gherkin, mutation testing, coverage) it's fine. Six weeks later he went further: he's ["starting to think that I'm over constraining them"](https://x.com/unclebobmartin/status/2096994914185662851).
+His advice, further down the thread: build first, test, rebuild, and engineer from there. I mostly agree with him. In practice, though, I see most engineers trying to refactor their way to the right solution instead of rebuilding.
+
+Then Dylan Garcia, on what a review is even for now:
+
+https://x.com/_dylanga/status/2096638574351327371
+
+I'm all about [two-way doors](https://s2.q4cdn.com/299287126/files/doc_financials/annual/2015-Letter-to-Shareholders.PDF), so I relate. He does add a caveat: for migrations, DNS, or data leaving your control, slow down and do it properly.
+
+And Uncle Bob, in a reply on whether you should read what your agents write:
+
+https://x.com/unclebobmartin/status/2080257779395154409
+
+His argument: with enough constraints (unit tests, Gherkin, mutation testing, coverage) it's fine. Six weeks later he went further: he's ["starting to think that I'm over constraining them"](https://x.com/unclebobmartin/status/2096994914185662851).
 
 The theme underneath all of them is how far we let agents go without a human in the loop. Each one dropping a different a human step.
 
