@@ -1,7 +1,6 @@
 ---
 title: "Why useRef"
 pubDate: "2020-10-10"
-bannerUrl: "../../assets/blog/why-useref.jpeg"
 description: "Why are we using useRef and what are its implications?"
 ---
 

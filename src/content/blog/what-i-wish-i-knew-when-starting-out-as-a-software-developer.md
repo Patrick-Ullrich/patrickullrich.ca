@@ -1,7 +1,6 @@
 ---
 title: "What I wish I knew when starting out as a Software Developer"
 pubDate: "2020-09-17"
-bannerUrl: "../../assets/blog/what-i-wish-i-knew-when-starting-out-as-a-software-developer.jpeg"
 description: "You are in the middle of your studies to become a software developer or just landed your first job - Congratulations 🥳 — Let me share some recommendations that I have received from mentors in the past, thoughts I have shared with mentees, and ideas that I wish someone would have told me when I started out. While there are many 100+ tips posts out there, I will focus on a short list of the things that I believe have been the most impactful in my career."
 ---
 

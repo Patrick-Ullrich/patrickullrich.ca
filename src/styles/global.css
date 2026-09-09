@@ -96,6 +96,10 @@ img {
   color: var(--terminal);
   line-height: 1.2;
 }
+.prose h2,
+.prose h3 {
+  scroll-margin-top: 84px;
+}
 .prose h2 {
   font-weight: 800;
   font-size: 28px;

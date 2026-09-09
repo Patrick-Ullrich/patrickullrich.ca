@@ -1,17 +1,18 @@
 ---
+import type { MarkdownHeading } from "astro";
 import type { CollectionEntry } from "astro:content";
 import BaseHead from "../components/BaseHead.astro";
 import SiteNav from "../components/SiteNav.astro";
 import SiteFooter from "../components/SiteFooter.astro";
 import FormattedDate from "../components/FormattedDate.astro";
+import TableOfContents from "../components/TableOfContents.astro";
 import { SITE_TITLE } from "../consts";
-import { Image } from "astro:assets";
 
-type Props = CollectionEntry<"blog">["data"];
+type Props = CollectionEntry<"blog">["data"] & { headings: MarkdownHeading[] };
 
-const { title, description, pubDate, updatedDate, heroImage, bannerUrl } =
-  Astro.props;
-const hero = heroImage ?? bannerUrl;
+const { title, description, pubDate, updatedDate, headings } = Astro.props;
+const tocHeadings = headings.filter(({ depth }) => depth === 2 || depth === 3);
+const hasToc = tocHeadings.length >= 2;
 ---
 
 <!DOCTYPE html>
@@ -20,12 +21,11 @@ const hero = heroImage ?? bannerUrl;
     <BaseHead
       title={`${title} — ${SITE_TITLE}`}
       description={description}
-      image={hero?.src}
     />
   </head>
   <body class="blog-body">
     <SiteNav />
-    <main class="post-main">
+    <main class:list={["post-main", { "post-main-with-toc": hasToc }]}>
       <article class="post">
         <a href="/blog" class="post-back">← All writing</a>
         <p class="post-meta">
@@ -41,22 +41,24 @@ const hero = heroImage ?? bannerUrl;
         </p>
         <h1 class="post-title">{title}</h1>
         {
-          hero && (
-            <Image
-              class="post-hero"
-              src={hero}
-              alt=""
-              widths={[480, 768, 1200]}
-              sizes="(max-width: 768px) 92vw, 672px"
-              loading="eager"
-              fetchpriority="high"
-            />
+          hasToc && (
+            <details class="toc-mobile">
+              <summary>On this page</summary>
+              <TableOfContents headings={tocHeadings} />
+            </details>
           )
         }
         <div class="prose">
           <slot />
         </div>
       </article>
+      {
+        hasToc && (
+          <aside class="post-sidebar">
+            <TableOfContents headings={tocHeadings} />
+          </aside>
+        )
+      }
     </main>
     <SiteFooter />
   </body>
@@ -104,17 +106,44 @@ const hero = heroImage ?? bannerUrl;
     color: var(--terminal);
     margin: 10px 0 0;
   }
-  .post-hero {
-    width: 100%;
-    height: auto;
-    aspect-ratio: 16 / 9;
-    object-fit: cover;
-    border-radius: var(--radius-lg);
+  .post-sidebar {
+    display: none;
+  }
+  .toc-mobile {
     border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    padding: 12px 16px;
     margin: 28px 0 0;
-    display: block;
+  }
+  .toc-mobile summary {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    cursor: pointer;
+  }
+  /* The summary already says "On this page" — drop the inner eyebrow. */
+  .toc-mobile :global(.toc-eyebrow) {
+    display: none;
   }
   .prose {
     margin-top: 36px;
+  }
+  @media (min-width: 1024px) {
+    .post-main-with-toc {
+      display: grid;
+      grid-template-columns: minmax(0, 720px) 220px;
+      gap: 48px;
+      max-width: 1036px;
+    }
+    .post-sidebar {
+      display: block;
+      position: sticky;
+      top: 92px;
+      align-self: start;
+      max-height: calc(100vh - 92px - 24px);
+      overflow-y: auto;
+    }
+    .toc-mobile {
+      display: none;
+    }
   }
 </style>

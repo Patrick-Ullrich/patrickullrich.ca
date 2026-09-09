@@ -3,4 +3,4 @@
 
 export const SITE_TITLE = "Patrick Ullrich";
 export const SITE_DESCRIPTION =
-  "Patrick Ullrich — VP of Engineering at Offstreet and founder of Kollektiv Software Studio. Full-stack by background, React & Node.js by trade.";
+  "Patrick Ullrich — VP of Engineering at Offstreet and founder of Kollektiv Software Studio. I lead teams building web platforms with React and Node.js.";

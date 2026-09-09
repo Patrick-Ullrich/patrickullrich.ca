@@ -1,7 +1,6 @@
 ---
 title: "Many-To-Many in EF .NET 5"
 pubDate: "2020-11-05"
-bannerUrl: "../../assets/blog/many-to-many-in-ef-net-5.png"
 description: "A new Many-2-Many syntax has been show cased during the .NET Conf 2020. We will take a look at see how it simplifies the setup."
 ---
 

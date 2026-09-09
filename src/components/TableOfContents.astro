@@ -1,0 +1,92 @@
+---
+import type { MarkdownHeading } from "astro";
+
+interface Props {
+  headings: MarkdownHeading[];
+}
+
+const { headings } = Astro.props;
+---
+
+<nav class="toc" aria-label="On this page">
+  <p class="toc-eyebrow">On this page</p>
+  <ul class="toc-list">
+    {
+      headings.map(({ depth, slug, text }) => (
+        <li>
+          <a href={`#${slug}`} class:list={{ "toc-link-depth-3": depth === 3 }}>
+            {text}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>
+
+<script>
+  const links = document.querySelectorAll<HTMLAnchorElement>('.toc a[href^="#"]');
+  const headings = document.querySelectorAll<HTMLElement>(".prose h2, .prose h3");
+
+  function setCurrent(href: string) {
+    links.forEach((link) => {
+      if (link.getAttribute("href") === href) {
+        link.setAttribute("aria-current", "true");
+      } else {
+        link.removeAttribute("aria-current");
+      }
+    });
+  }
+
+  const firstHref = links[0]?.getAttribute("href");
+  if (firstHref) {
+    setCurrent(firstHref);
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setCurrent(`#${entry.target.id}`);
+          }
+        });
+      },
+      { rootMargin: "-80px 0px -70% 0px" }
+    );
+
+    headings.forEach((heading) => observer.observe(heading));
+  }
+</script>
+
+<style>
+  .toc-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    color: var(--grey-500);
+    margin: 12px 0;
+  }
+  .toc-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .toc a {
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--grey-600);
+    text-decoration: none;
+    display: block;
+    padding: 4px 0 4px 12px;
+    border-left: 2px solid transparent;
+  }
+  .toc a[aria-current="true"] {
+    color: var(--signal);
+    border-left-color: var(--signal);
+  }
+  .toc a:hover {
+    color: var(--terminal);
+  }
+  .toc .toc-link-depth-3 {
+    padding-left: 24px;
+    font-size: 13px;
+  }
+</style>
