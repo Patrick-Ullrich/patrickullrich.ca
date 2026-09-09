@@ -216,3 +216,8 @@ img {
 .prose .twitter-tweet a:hover {
   text-decoration: underline;
 }
+/* X appends a raw t.co "show more" link to truncated tweets; the date link
+   below already leads to the full post. */
+.prose .twitter-tweet p > a[href^="https://t.co/"] {
+  display: none;
+}
