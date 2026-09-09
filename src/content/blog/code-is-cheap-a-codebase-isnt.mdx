@@ -4,7 +4,23 @@ pubDate: "2026-09-10"
 description: "Why I still review PRs when AI writes the code: what a review can check today, what it can't, and what that costs in month six."
 ---
 
-"Just merge it, the AI will fix it." It works. I've watched it work. It always works in the beginning.
+"Just merge it, the AI will fix it." It works. I've watched it work.
+
+The ticket says: resending an invoice must not charge the card again. An agent's fix:
+
+```ts
+async function sendInvoice(invoice: Invoice, skipCharge = false) {
+  if (!skipCharge) {
+    await chargeCard(invoice);
+  }
+  await emailInvoice(invoice);
+}
+
+sendInvoice(invoice);       // first send
+sendInvoice(invoice, true); // resend
+```
+
+Bug fixed. Tests green. Ship it. It always works in the beginning.
 
 I've been thinking about the purpose of PR reviews a lot lately, because several related trends landed on my timeline at once.
 
@@ -26,7 +42,7 @@ https://x.com/unclebobmartin/status/2080257779395154409
 
 His argument: with enough constraints (unit tests, Gherkin, mutation testing, coverage) it's fine. Six weeks later he went further: he's ["starting to think that I'm over constraining them"](https://x.com/unclebobmartin/status/2096994914185662851).
 
-The theme underneath all of them is how far we let agents go without a human in the loop. Each one dropping a different a human step.
+The theme underneath all of them is how far we let agents go without a human in the loop. Each one drops a different human step.
 
 I really like Addy Osmani's framing in [Software Factories, Light and Dark](https://addyosmani.com/blog/software-factories/): a dark factory runs the agents with nobody reading the output. A lit factory is the same pipeline with "the lights left on where judgment lives". His rule for choosing: you can only hand a loop as much autonomy as you can cheaply and reliably verify. This post is me working out whether PRs are one of the places the lights stay on. For now, at least.
 
@@ -74,23 +90,9 @@ Underneath the stack problem is a bigger one. To reason about a system at all, t
 
 ### What AI writes, AI can't fix
 
-The three examples below are simplified, but all three have the same shape. The outcome is right, exactly what the "only the outcome matters" crowd asks for. The tests are green. And the agent that wrote it won't fix it on its own, because from where it stands nothing is broken. It found the change that satisfies the request. It never stepped back to ask whether the request exposed a problem with how we modelled the thing. I haven't noticed a difference between Opus 4.5 and Fable here.
+Three examples, all simplified, all the same shape. The outcome is right, exactly what the "only the outcome matters" crowd asks for. The tests are green. And the agent that wrote it won't fix it on its own, because from where it stands nothing is broken. It found the change that satisfies the request. It never stepped back to ask whether the request exposed a problem with how we modelled the thing. I haven't noticed a difference between Opus 4.5 and Fable here.
 
-The ticket says: resending an invoice must not charge the card again. An agent's fix looks like this:
-
-```ts
-async function sendInvoice(invoice: Invoice, skipCharge = false) {
-  if (!skipCharge) {
-    await chargeCard(invoice);
-  }
-  await emailInvoice(invoice);
-}
-
-sendInvoice(invoice);       // first send
-sendInvoice(invoice, true); // resend
-```
-
-Bug fixed. Test passes. Outcome correct. And the function now has two modes and a flag to pick between them. Keep extending it this way, and by month six it has four flags and nobody knows which combinations are valid. The better solution:
+The first one you've already seen: the invoice flag from the top of this post. Bug fixed, test passes, outcome correct. And the function now has two modes and a flag to pick between them. Keep extending it this way, and by month six it has four flags and nobody knows which combinations are valid. The better solution:
 
 ```ts
 async function issueInvoice(invoice: Invoice) {
@@ -155,4 +157,4 @@ Bucket two: lights on, but I've started dimming them. At least until I'm confide
 
 But how would I even know? We started tracking early on: output, velocity, bugs, and a regular dev check-in. Compared to the days of no AI or autocomplete-style AI, velocity is up about 4x across our productivity metrics. Fewer outages. Long-standing issues closed, a lot of tech debt addressed, and bugs under our zero-bug policy get fixed on average in less than eight hours instead of seven days. Business KPIs match the trend. Very outcome-focused again, I know, and I still don't think it captures the essence. Can you really quantify quality? Maybe it doesn't matter. What those numbers do buy me is the right to be cutting edge instead of bleeding edge. At least while we're still figuring out the right path forward.
 
-But hey... maybe none of this matters. Maybe I'm focused on the wrong thing. Maybe the right move is to let go completely and let the tooling take me. Some days I think that. I know the reply, too: if code is cheap, the month-six cleanup is cheap as well. Except I'm not so sure it is. The fundamentals didn't stop mattering, they moved to month six, and nobody is writing about month six. But I'm the one standing in front of that board, and that customer, and I'm not at that point yet. So I'd ask one thing. Am I willing to bet the company on it? Are you? Because if it doesn't work out, the person who told you coding was solved won't be there to help you unfuck your codebase.
+But hey... maybe none of this matters. Maybe I'm focused on the wrong thing. Maybe the right move is to let go completely and let the tooling take me. Some days I think that. I know the reply, too: if code is cheap, the month-six cleanup is cheap as well. Except I'm not so sure it is. The fundamentals didn't stop mattering, they moved to month six, and nobody is writing about month six. But I'm the one accountable for that feature, and that uptime, and I'm not at that point yet. So I'd ask one thing. Am I willing to bet the company on it? Are you? Because if it doesn't work out, the person who told you coding was solved won't be there to help you unfuck your codebase.
