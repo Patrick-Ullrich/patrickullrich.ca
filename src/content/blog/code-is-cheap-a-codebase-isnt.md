@@ -4,21 +4,21 @@ pubDate: "2026-09-10"
 description: "Why I still review PRs when AI writes the code: what a review can check today, what it can't, and what that costs in month six."
 ---
 
-Every couple of years something arrives promising the fundamentals stopped mattering. I go and check every time. So far they still do. This is the first time I've been less sure.
+"Just merge it, the AI will fix it." It works. I've watched it work. It always works in the beginning.
 
 I've been thinking about the purpose of PR reviews a lot lately, because several related trends landed on my timeline at once.
 
-[Jack Ellis](https://x.com/JackEllis/status/2096999428028600492), CTO of Fathom Analytics: designing before coding made sense when a wrong build cost tens of thousands of dollars. Now code is cheap, so build first, test, rebuild, and engineer from there. I mostly agree, but in practice I see most engineers trying to refactor their way to the right solution instead of rebuilding.
+[Jack Ellis](https://x.com/JackEllis/status/2096999428028600492), CTO of Fathom Analytics, argues that designing before coding only made sense when a wrong build cost tens of thousands of dollars. Now that code is cheap, his advice is "build first, test, rebuild" and engineer from there. I mostly agree with him. In practice, though, I see most engineers trying to refactor their way to the right solution instead of rebuilding.
 
-Then [Dylan Garcia's tweet](https://x.com/_dylanga/status/2096638574351327371): the only thing that matters in a PR review now is how fast you can recover if it's wrong. I'm all about [two-way doors](https://s2.q4cdn.com/299287126/files/doc_financials/annual/2015-Letter-to-Shareholders.PDF), so I relate. He does add a caveat: for migrations, DNS, or data leaving your control, slow down and do it properly.
+Then [Dylan Garcia's tweet](https://x.com/_dylanga/status/2096638574351327371). His take: the most important part of a PR review now is "how quickly you can recover from a mistake caused by the PR". I'm all about [two-way doors](https://s2.q4cdn.com/299287126/files/doc_financials/annual/2015-Letter-to-Shareholders.PDF), so I relate. He does add a caveat: for migrations, DNS, or data leaving your control, slow down and do it properly.
 
-And Uncle Bob, of all people, tweeted that his [current strategy is to not read any of the code his agents write](https://x.com/unclebobmartin/status/2080257779395154409). His argument: with enough constraints, unit tests, Gherkin, mutation testing, coverage, it's fine. Six weeks later he went further and said he's [starting to think he's over-constraining them](https://x.com/unclebobmartin/status/2096994914185662851).
+And Uncle Bob, of all people, tweeted that his ["current strategy is to not read any of the code written by my agents"](https://x.com/unclebobmartin/status/2080257779395154409). His argument: with enough constraints (unit tests, Gherkin, mutation testing, coverage) it's fine. Six weeks later he went further: he's ["starting to think that I'm over constraining them"](https://x.com/unclebobmartin/status/2096994914185662851).
 
 The theme underneath all of them is how far we let agents go without a human in the loop. Each one drops a human step: Jack the plan, Dylan the review, Uncle Bob the reading of the result. I keep seeing it everywhere. Are we just part of the planning stage? Are we the gatekeeper? Are we the [meat proxy](https://simonwillison.net/2026/Aug/3/dont-be-a-meat-proxy/), pasting agent output into a PR and reviewer comments back into the agent?
 
 I really like Addy Osmani's framing in [Software Factories, Light and Dark](https://addyosmani.com/blog/software-factories/): a dark factory runs the agents with nobody reading the output. A lit factory is the same pipeline with "the lights left on where judgment lives". His rule for choosing: you can only hand a loop as much autonomy as you can cheaply and reliably verify. This post is me working out whether PRs are one of the places the lights stay on. For now, at least. All of this keeps moving.
 
-Where I agree with all of them: it works. At least in the beginning.
+Where I agree with all of them: it works.
 
 See, it always worked in the beginning. Every startup I've watched shipped fast at first on a codebase nobody defended. The ones without somebody who'd been through it before sank into the same [tar pit](https://www.informit.com/store/mythical-man-month-essays-on-software-engineering-anniversary-9780201835953) somewhere between month six and month eighteen. I've spent over half my career in startups, the rest in government and consulting for companies big enough that you've eaten at them or own their phone. I tell technical people to move faster at least as often as I tell them to slow down, because speed to market beats almost everything. I also know what the bill looks like later. I think you can have both, as long as someone on the team can smell the tar before they're in it.
 
