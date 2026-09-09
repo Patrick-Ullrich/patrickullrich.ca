@@ -16,7 +16,7 @@ And Uncle Bob tweeted that his ["current strategy is to not read any of the code
 
 The theme underneath all of them is how far we let agents go without a human in the loop. Each one drops a human step: Jack the plan, Dylan the review, Uncle Bob the reading of the result. I keep seeing it everywhere. Are we just part of the planning stage? Are we the gatekeeper? Are we the [meat proxy](https://simonwillison.net/2026/Aug/3/dont-be-a-meat-proxy/), pasting agent output into a PR and reviewer comments back into the agent?
 
-I really like Addy Osmani's framing in [Software Factories, Light and Dark](https://addyosmani.com/blog/software-factories/): a dark factory runs the agents with nobody reading the output. A lit factory is the same pipeline with "the lights left on where judgment lives". His rule for choosing: you can only hand a loop as much autonomy as you can cheaply and reliably verify. This post is me working out whether PRs are one of the places the lights stay on. For now, at least. All of this keeps moving.
+I really like Addy Osmani's framing in [Software Factories, Light and Dark](https://addyosmani.com/blog/software-factories/): a dark factory runs the agents with nobody reading the output. A lit factory is the same pipeline with "the lights left on where judgment lives". His rule for choosing: you can only hand a loop as much autonomy as you can cheaply and reliably verify. This post is me working out whether PRs are one of the places the lights stay on. For now, at least.
 
 Where I agree with all of them: it works.
 
